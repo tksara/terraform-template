@@ -22,7 +22,10 @@ resource "aws_instance" "cda_instance" {
 		sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 		docker-compose --version
 		yum install -y git
+		mkdir  /tmp/jenya
+                cd /tmp/jenya
 		git clone git://github.com/Runscope/requestbin.git
+		cd requestbin
 		docker-compose build
 		docker-compose up -d
 	HEREDOC
