@@ -12,10 +12,10 @@ resource "aws_instance" "cda_instance" {
 //	key_name	       = "${var.aws_key_name}"
 	user_data = <<HEREDOC
 		#!/bin/bash
-		yum update
-		yum install -y docker
+		yum update -y
+		amazon-linux-extras install docker
 		service docker start
 		usermod -aG docker ec2-user
-		docker info
+		docker info -y
 	HEREDOC
 }	
