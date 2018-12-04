@@ -16,5 +16,6 @@ resource "aws_instance" "cda_instance" {
 		yum install -y docker
 		service docker start
 		usermod -aG docker ec2-user
+		docker info
 	HEREDOC
 }	
