@@ -10,6 +10,7 @@ resource "aws_instance" "cda_instance" {
 	vpc_security_group_ids = ["${var.aws_security_group_id}"]
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
+	key_name	= "jeny-key"
 	user_data = <<HEREDOC
 		#!/bin/bash
 		yum update -y
