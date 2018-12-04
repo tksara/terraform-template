@@ -16,8 +16,5 @@ resource "aws_instance" "cda_instance" {
 		yum install -y docker
 		service docker start
 		usermod -aG docker ec2-user
-		git clone git://github.com/Runscope/requestbin.git
-		sudo docker-compose build
-		sudo docker-compose up -d
 	HEREDOC
 }	
