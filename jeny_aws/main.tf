@@ -17,5 +17,6 @@ resource "aws_instance" "cda_instance" {
 		service docker start
 		usermod -aG docker ec2-user
 		docker info -y
+echo
 	HEREDOC
 }	
