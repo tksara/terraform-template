@@ -10,5 +10,9 @@ resource "aws_instance" "cda_instance" {
 	vpc_security_group_ids = ["${var.aws_security_group_id}"]
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
-
+	#!/bin/sh
+yum update
+yum install -y docker
+service docker start
+usermod -aG docker ec2-user
 }	
