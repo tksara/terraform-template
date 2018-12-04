@@ -16,7 +16,5 @@ resource "aws_instance" "cda_instance" {
 		amazon-linux-extras install docker
 		service docker start
 		usermod -aG docker ec2-user
-		docker info -y
-echo
 	HEREDOC
 }	
