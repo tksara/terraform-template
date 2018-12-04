@@ -24,7 +24,7 @@ resource "aws_instance" "cda_instance" {
 		yum install -y git
 		mkdir  /tmp/jenya
                 cd /tmp/jenya
-		git clone git://github.com/Runscope/requestbin.git
+		git clone git://github.com/jenyss/requestbin.git
 		cd requestbin
 		docker-compose build
 		docker-compose up -d
