@@ -14,7 +14,7 @@ variable "private_key_file" {
 	default = "./key1.pem"
 }
 variable "aws_ami" {
-	default = "ami-0cd3dfa4"	
+	default = "ami-0cd3dfa4e37921605"	
 }
 
 variable "aws_security_group_id" {
