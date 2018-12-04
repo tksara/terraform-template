@@ -11,7 +11,7 @@ resource "aws_instance" "cda_instance" {
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
 	user_data = <<HEREDOC
-		#!/bin/sh
+		#!/bin/bash
 		yum update
 		yum install -y docker
 		service docker start
