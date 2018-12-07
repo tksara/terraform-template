@@ -43,8 +43,10 @@ resource "aws_ses_template" "MyTemplate" {
 	subject = "Your AWS Instance IP"
 	html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
 	text    = "Hello {{name}},\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
-}
 
 provisioner "local-exec" {
 		command = "#!/bin/bash aws ses send-templated-email --template ${aws_ses_template.MyTemplate.*} --destination ToAddresses=${var.email}"
 	}
+
+}
+
