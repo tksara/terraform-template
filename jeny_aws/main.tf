@@ -38,16 +38,11 @@ output "public_ip" {
 	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
 
-module "consul" {
-	source = "go get github.com/roboll/terraform-provider-sendmail"
-}
+resource "aws_sns_topic" "instance-alerts" {
+	name = "instance-alerts"
 
-resource sendmail_send email {
-	from = "someone@example.com"
-	to = "otherone@example.com"
-	subject = "A Terraform Email"
-	body = <<EMAIL
-Hello, this is an email from terraform {{${aws_instance.cda_instance.*.public_ip[0]}}}
-EMAIL
+	provisioner "local-exec" {
+		command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint jenya.stoeva@broadcom.com"
+	}
 }
 
