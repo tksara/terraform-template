@@ -41,6 +41,14 @@ output "public_ip" {
 resource "aws_ses_template" "MyTemplate" {
 	name    = "MyTemplate"
 	subject = "Your AWS Instance IP"
-	html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
-	text    = "Hello {{name}},\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
+	html    = "<h1>Hello Jeny,</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
+	text    = "Hello Jeny,\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
+}
+
+resource "aws_ses_receipt_rule" "test" {
+	name = "test"
+	rule_set_name = "test1"
+	recipients = [jenya.stoeva@broadcom.com]
+	enabled = true
+	scan_enabled = true
 }
