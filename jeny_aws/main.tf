@@ -35,6 +35,12 @@ resource "aws_instance" "cda_instance" {
 
 output "public_ip" {
 	description = "List of public IP addresses assigned to the instances, if applicable"
-	value = "${aws_instance.cda_instance.*.public_ip}"
+	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
 
+resource "aws_ses_template" "MyTemplate" {
+	name    = "MyTemplate"
+	subject = "Your AWS Instance IP"
+	html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
+	text    = "Hello {{name}},\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
+}
