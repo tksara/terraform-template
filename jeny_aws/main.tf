@@ -48,7 +48,7 @@ resource "aws_ses_template" "MyTemplate" {
 resource "aws_ses_receipt_rule" "test" {
 	name = "test"
 	rule_set_name = "test1"
-	recipients = [jenya.stoeva@broadcom.com]
+	recipients = ["jenya.stoeva@broadcom.com"]
 	enabled = true
 	scan_enabled = true
 }
