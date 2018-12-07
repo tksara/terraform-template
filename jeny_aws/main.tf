@@ -42,7 +42,7 @@ resource "aws_sns_topic" "billing_notifications" {
 	name = "billing-notifications"
 
 	provisioner "local-exec" {
-		command = "aws sns subscribe --topic-arn ${self.connection} --protocol email --notification-endpoint ${var.email}"
+		command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.email}"
 	}
 }
 
