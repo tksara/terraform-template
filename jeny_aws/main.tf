@@ -1,8 +1,3 @@
-locals {
-  this_public_ip                    = "${compact(concat(coalescelist(aws_instance.this.*.public_ip, aws_instance.this_t2.*.public_ip), list("")))}"
-}
-
-
 provider "aws" {
 	region     = "us-east-2"
 	access_key = "${var.aws_access_key}"
@@ -39,6 +34,6 @@ resource "aws_instance" "cda_instance" {
 }
 
 output "public_ip" {
-  description = "List of public IP addresses assigned to the instances, if applicable"
-  value       = ["${local.this_public_ip}"]
+	description = "List of public IP addresses assigned to the instances, if applicable"
+	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
