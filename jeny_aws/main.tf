@@ -39,7 +39,7 @@ output "public_ip" {
 }
 
 module "consul" {
-	source = "curl -L -o /usr/local/bin/terraform-provider-sendmail https://github.com/roboll/terraform-provider-sendmail/releases/download/{VERSION}/terraform-provider-sendmail_{OS}_{ARCH}"
+	source = "go get github.com/roboll/terraform-provider-sendmail"
 }
 
 resource sendmail_send email {
