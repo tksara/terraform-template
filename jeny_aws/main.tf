@@ -1,8 +1,15 @@
+locals {
+  this_public_ip                    = "${compact(concat(coalescelist(aws_instance.this.*.public_ip, aws_instance.this_t2.*.public_ip), list("")))}"
+}
+
+
 provider "aws" {
 	region     = "us-east-2"
 	access_key = "${var.aws_access_key}"
 	secret_key = "${var.aws_secret_key}"
 }
+
+
 
 resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
@@ -29,4 +36,9 @@ resource "aws_instance" "cda_instance" {
 		docker-compose build
 		docker-compose up -d
 	HEREDOC
-}	
+}
+
+output "public_ip" {
+  description = "List of public IP addresses assigned to the instances, if applicable"
+  value       = ["${local.this_public_ip}"]
+}
