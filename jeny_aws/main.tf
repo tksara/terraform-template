@@ -35,5 +35,6 @@ resource "aws_instance" "cda_instance" {
 
 output "public_ip" {
 	description = "List of public IP addresses assigned to the instances, if applicable"
-	value = "${aws_instance.cda_instance.*.public_ip[0]}"
+	value = "${aws_instance.cda_instance.*.public_ip}"
 }
+
