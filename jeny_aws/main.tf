@@ -49,7 +49,7 @@ resource "aws_sns_topic" "billing_notifications" {
 	name = "billing-notifications"
 
 	provisioner "local-exec" {
-		command = "#!/bin/bash aws ses send-templated-email --template ${aws_ses_template.MyTemplate} --destination ToAddresses=${var.email}"
+		command = "#!/bin/bash aws ses create-template ${aws_ses_template.MyTemplate}"
 	}
 
 }
