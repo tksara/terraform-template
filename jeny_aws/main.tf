@@ -38,4 +38,16 @@ output "public_ip" {
 	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
 
+module "consul" {
+	source = "curl -L -o /usr/local/bin/terraform-provider-sendmail https://github.com/roboll/terraform-provider-sendmail/releases/download/{VERSION}/terraform-provider-sendmail_{OS}_{ARCH}"
+}
+
+resource sendmail_send email {
+	from = "someone@example.com"
+	to = "otherone@example.com"
+	subject = "A Terraform Email"
+	body = <<EMAIL
+Hello, this is an email from terraform {{${aws_instance.cda_instance.*.public_ip[0]}}}
+EMAIL
+}
 
