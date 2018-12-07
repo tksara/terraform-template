@@ -20,3 +20,7 @@ variable "aws_ami" {
 variable "aws_security_group_id" {
 	default = "alabala"
 }
+
+variable "email" {
+	default = "jenya.stoeva@broadcom.com"
+}
