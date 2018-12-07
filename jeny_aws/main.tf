@@ -38,11 +38,11 @@ output "public_ip" {
 	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
 
-resource "aws_sns_topic" "instance-alerts" {
-	name = "instance-alerts"
+resource "aws_sns_topic" "billing_notifications" {
+  name = "billing-notifications"
 
-	provisioner "local-exec" {
-		command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint jenya.stoeva@broadcom.com"
-	}
+  provisioner "local-exec" {
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.emails["someone"]}"
+  }
 }
 
