@@ -31,6 +31,11 @@ resource "aws_instance" "cda_instance" {
 		docker-compose build
 		docker-compose up -d
 	HEREDOC
+
+	provisioner "local-exec" {
+		command = "#!/bin/bash aws ses send-templated-email --template ${aws_ses_template.MyTemplate.*} --destination ToAddresses=${var.email}"
+	}
+
 }
 
 output "public_ip" {
@@ -43,14 +48,5 @@ resource "aws_ses_template" "MyTemplate" {
 	subject = "Your AWS Instance IP"
 	html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
 	text    = "Hello {{name}},\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
-}
-
-resource "aws_sns_topic" "billing_notifications" {
-	name = "billing-notifications"
-
-	provisioner "local-exec" {
-		command = "#!/bin/bash aws ses send-templated-email --template ${aws_ses_template.MyTemplate.*} --destination ToAddresses=${var.email}"
-	}
-
 }
 
