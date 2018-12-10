@@ -7,11 +7,11 @@ variable "aws_secret_key" {
 }
 
 variable "aws_key_name" {
-	default = "key1"
+	default = "jeny-key"
 }
 
 variable "private_key_file" {
-	default = "./key1.pem"
+	default = "./jeny-key.pem"
 }
 variable "aws_ami" {
 	default = "ami-0cd3dfa4e37921605"	
@@ -19,4 +19,8 @@ variable "aws_ami" {
 
 variable "aws_security_group_id" {
 	default = "alabala"
+}
+
+variable "email" {
+	default = "jenya.stoeva@broadcom.com"
 }
