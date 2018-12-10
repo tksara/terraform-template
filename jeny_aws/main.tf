@@ -95,11 +95,6 @@ output "subnet_id" {
 	value       = ["${aws_instance.cda_instance.subnet_id}"]
 }
 
-output "credit_specification" {
-	description = "List of credit specification of instances"
-	value       = ["${aws_instance.cda_instance.credit_specification}"]
-}
-
 output "tags" {
 	description = "List of tags of instances"
 	value       = ["${aws_instance.cda_instance.tags}"]
