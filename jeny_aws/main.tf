@@ -35,7 +35,7 @@ resource "aws_instance" "cda_instance" {
 		python --version
 		cd /tmp
 		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
-		printf '%s\n' '{"Source": "jenya.stoeva@broadcom.com", "Template": "MyTemplate", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"alligator\" }"}' >myemail.json
+		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplate", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"alligator\" }"}' >myemail1.json
 	HEREDOC
 }
 
