@@ -35,6 +35,18 @@ resource "aws_instance" "cda_instance" {
 		cd aws-cli
 		pip install awscli
 	HEREDOC
+
+provisioner "file" {
+	source      = "email/mytemplate.json"
+	destination = "aws-cli"
+
+	connection {
+		type        = "ssh"
+		user        = "ec2-user"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+}
+
 }
 
 output "public_ip" {
