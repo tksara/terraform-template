@@ -7,7 +7,7 @@ variable "aws_secret_key" {
 }
 
 variable "aws_key_name" {
-	default = "/jeny-key.pem"
+	default = "jeny-key"
 }
 
 variable "private_key_file" {
