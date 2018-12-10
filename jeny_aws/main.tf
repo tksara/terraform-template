@@ -37,17 +37,6 @@ resource "aws_instance" "cda_instance" {
 		pip install awscli
 		printf '%s\n' 'First line.' 'Second line.' 'Third line.' >foo.txt
 	HEREDOC
-
-	provisioner "file" {
-		source      = "email/mytemplate.json"
-		destination = "aws-cli"
-
-		connection {
-			type        = "ssh"
-			user        = "ec2-user"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-	}
 }
 
 output "public_ip" {
