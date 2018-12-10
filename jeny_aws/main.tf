@@ -13,6 +13,7 @@ resource "aws_instance" "cda_instance" {
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
 	key_name	= "jeny-key"
+	
 	user_data = <<HEREDOC
 		#!/bin/bash
 		yum update -y
@@ -36,17 +37,16 @@ resource "aws_instance" "cda_instance" {
 		pip install awscli
 	HEREDOC
 
-provisioner "file" {
-	source      = "email/mytemplate.json"
-	destination = "aws-cli"
+	provisioner "file" {
+		source      = "email/mytemplate.json"
+		destination = "aws-cli"
 
-	connection {
-		type        = "ssh"
-		user        = "ec2-user"
-		private_key = "${file("${var.private_key_file}")}"
+		connection {
+			type        = "ssh"
+			user        = "ec2-user"
+			private_key = "${file("${var.private_key_file}")}"
+		}
 	}
-}
-
 }
 
 output "public_ip" {
@@ -107,15 +107,4 @@ output "vpc_security_group_ids" {
 output "subnet_id" {
 	description = "List of IDs of VPC subnets of instances"
 	value       = ["${aws_instance.cda_instance.*.subnet_id[0]}"]
-}
-
-provisioner "file" {
-	source      = "email/mytemplate.json"
-	destination = "aws-cli"
-
-	connection {
-		type        = "ssh"
-		user        = "ec2-user"
-		private_key = "${file("${var.private_key_file}")}"
-	}
 }
