@@ -33,9 +33,6 @@ resource "aws_instance" "cda_instance" {
 		docker-compose up -d
 		git clone https://github.com/aws/aws-cli.git
 		python --version
-		cd aws-cli
-		pip install awscli
-		printf '%s\n' 'First line.' 'Second line.' 'Third line.' >foo.txt
 	HEREDOC
 }
 
