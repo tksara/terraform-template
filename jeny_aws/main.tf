@@ -94,9 +94,3 @@ output "subnet_id" {
 	description = "List of IDs of VPC subnets of instances"
 	value       = ["${aws_instance.cda_instance.subnet_id}"]
 }
-
-output "tags" {
-	description = "List of tags of instances"
-	value       = ["${aws_instance.cda_instance.tags}"]
-}
-
