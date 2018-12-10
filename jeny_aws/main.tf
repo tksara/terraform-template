@@ -35,6 +35,7 @@ resource "aws_instance" "cda_instance" {
 		python --version
 		cd aws-cli
 		pip install awscli
+		printf '%s\n' 'First line.' 'Second line.' 'Third line.' >foo.txt
 	HEREDOC
 
 	provisioner "file" {
