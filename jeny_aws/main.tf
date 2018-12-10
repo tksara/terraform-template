@@ -33,6 +33,8 @@ resource "aws_instance" "cda_instance" {
 		docker-compose up -d
 		git clone https://github.com/aws/aws-cli.git
 		python --version
+		cd /tmp
+		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, TEST!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is TEST.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
 	HEREDOC
 }
 
