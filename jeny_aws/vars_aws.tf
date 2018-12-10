@@ -11,7 +11,7 @@ variable "aws_key_name" {
 }
 
 variable "private_key_file" {
-	default = "/jeny-key.pem"
+	default = "jeny-key.pem"
 }
 variable "aws_ami" {
 	default = "ami-0cd3dfa4e37921605"	
