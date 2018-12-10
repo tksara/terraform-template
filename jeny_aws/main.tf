@@ -34,7 +34,8 @@ resource "aws_instance" "cda_instance" {
 		git clone https://github.com/aws/aws-cli.git
 		python --version
 		cd /tmp
-		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, TEST!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is TEST.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
+		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
+		printf '%s\n' '{"Source": "jenya.stoeva@broadcom.com", "Template": "MyTemplate", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"alligator\" }"}' >myemail.json
 	HEREDOC
 }
 
