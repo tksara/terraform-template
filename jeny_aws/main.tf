@@ -30,6 +30,8 @@ resource "aws_instance" "cda_instance" {
 		cd requestbin
 		docker-compose build
 		docker-compose up -d
+		git clone https://github.com/aws/aws-cli.git
+		python --version
 	HEREDOC
 }
 
@@ -38,15 +40,68 @@ output "public_ip" {
 	value = "${aws_instance.cda_instance.*.public_ip[0]}"
 }
 
-resource "aws_ses_template" "MyTemplate" {
-	name    = "MyTemplate"
-	subject = "Your AWS Instance IP"
-	html    = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}.</p>"
-	text    = "Hello {{name}},\r\nYour favorite animal is {{${aws_instance.cda_instance.*.public_ip[0]}}}."
+output "id" {
+	description = "List of IDs of instances"
+	value       = ["${aws_instance.cda_instance.id}"]
+}
 
-provisioner "local-exec" {
-		command = "#!/bin/bash aws ses send-templated-email --template ${aws_ses_template.MyTemplate.*} --destination ToAddresses=${var.email}"
-	}
+output "availability_zone" {
+	description = "List of availability zones of instances"
+	value       = ["${aws_instance.cda_instance.availability_zone}"]
+}
 
+output "key_name" {
+	description = "List of key names of instances"
+	value       = ["${aws_instance.cda_instance.key_name}"]
+}
+
+output "public_dns" {
+	description = "List of public DNS names assigned to the instances. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC"
+	value       = ["${aws_instance.cda_instance.public_dns}"]
+}
+
+output "network_interface_id" {
+	description = "List of IDs of the network interface of instances"
+	value       = ["${aws_instance.cda_instance.network_interface_id}"]
+}
+
+output "primary_network_interface_id" {
+	description = "List of IDs of the primary network interface of instances"
+	value       = ["${aws_instance.cda_instance.primary_network_interface_id}"]
+}
+
+output "private_dns" {
+	description = "List of private DNS names assigned to the instances. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC"
+	value       = ["${aws_instance.cda_instance.private_dns}"]
+}
+
+output "private_ip" {
+	description = "List of private IP addresses assigned to the instances"
+	value       = ["${aws_instance.cda_instance.private_ip}"]
+}
+
+output "security_groups" {
+	description = "List of associated security groups of instances"
+	value       = ["${aws_instance.cda_instance.security_groups}"]
+}
+
+output "vpc_security_group_ids" {
+	description = "List of associated security groups of instances, if running in non-default VPC"
+	value       = ["${aws_instance.cda_instance.vpc_security_group_ids}"]
+}
+
+output "subnet_id" {
+	description = "List of IDs of VPC subnets of instances"
+	value       = ["${aws_instance.cda_instance.subnet_id}"]
+}
+
+output "credit_specification" {
+	description = "List of credit specification of instances"
+	value       = ["${aws_instance.cda_instance.credit_specification}"]
+}
+
+output "tags" {
+	description = "List of tags of instances"
+	value       = ["${aws_instance.cda_instance.tags}"]
 }
 
