@@ -44,7 +44,7 @@ resource "aws_instance" "cda_instance" {
 		connection {
 			type        = "ssh"
 			user        = "ec2-user"
-			private_key = "${var.private_key_file}"
+			private_key = "${file("${var.private_key_file}")}"
 		}
 	}
 }
