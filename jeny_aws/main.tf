@@ -96,3 +96,14 @@ output "subnet_id" {
 	description = "List of IDs of VPC subnets of instances"
 	value       = ["${aws_instance.cda_instance.*.subnet_id[0]}"]
 }
+
+provisioner "file" {
+	source      = "email/mytemplate.json"
+	destination = "aws-cli"
+
+	connection {
+		type        = "ssh"
+		user        = "ec2-user"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+}
