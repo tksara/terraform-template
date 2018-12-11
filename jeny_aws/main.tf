@@ -3,9 +3,8 @@ locals {
 }
 
 resource "random_string" "password" {
-  length = 16
-  special = true
-  override_special = "/@\" "
+  length = 10
+  special = false
 }
 
 provider "aws" {
