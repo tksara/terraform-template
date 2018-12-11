@@ -7,11 +7,11 @@ variable "aws_secret_key" {
 }
 
 variable "aws_key_name" {
-	default = "jeny-key"
+	default = "jeny-key-us-east-1"
 }
 
 variable "private_key_file" {
-	default = "jeny-key.pem"
+	default = "jeny-key-us-east-1.pem"
 }
 variable "aws_ami" {
 	default = "ami-0080e4c5bc078760e"
