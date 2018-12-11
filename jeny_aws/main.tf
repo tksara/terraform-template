@@ -83,7 +83,7 @@ output "public_dns" {
 
 output "network_interface_id" {
 	description = "List of IDs of the network interface of instances"
-	value       = ["${aws_instance.cda_instance.*.network_interface_id[0]}"]
+	value       = "${aws_instance.cda_instance.*.network_interface_id[0]}"
 }
 
 output "primary_network_interface_id" {
