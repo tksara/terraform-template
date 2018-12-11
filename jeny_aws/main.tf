@@ -36,7 +36,7 @@ resource "aws_instance" "cda_instance" {
 		cd /tmp
 		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
 		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplate", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"alligator\" }"}' >myemail1.json
-		aws ses send-templated-email --cli-input-json file://myemail1.json --region us-east-1
+		
 	HEREDOC
 }
 
