@@ -1,20 +1,15 @@
 locals {
-  in_id = "${random_integer.priority.*.id[0]}"
+  in_id = "${random_string.password.result}"
 }
 
-provider "aws" {
-	region     = "us-east-1"
-	access_key = "${var.aws_access_key}"
-	secret_key = "${var.aws_secret_key}"
+resource "random_string" "password" {
+  length = 16
+  special = true
+  override_special = "/@\" "
 }
 
-resource "random_integer" "priority" {
-  min     = 1
-  max     = 99999
-  keepers = {
-    # Generate a new integer each time we switch to a new listener ARN
-    listener_arn = "${var.listener_arn}"
-  }
+resource "aws_db_instance" "example" {
+  password = "${random_string.password.result}"
 }
 
 resource "aws_alb_listener_rule" "main" {
