@@ -1,5 +1,5 @@
-variable "instance_id" {
-	default = "${aws_instance.cda_instance.*.id[0]}"
+locals {
+  instance_id = "${aws_instance.cda_instance.*.id[0]}"
 }
 
 provider "aws" {
@@ -38,7 +38,7 @@ resource "aws_instance" "cda_instance" {
 		git clone https://github.com/aws/aws-cli.git
 		python --version
 		cd /tmp
-		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ_${var.instance_id}", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{}"}' >myemail1.json
+		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ_${local.instance_id}", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{}"}' >myemail1.json
 		export AWS_ACCESS_KEY_ID=${var.aws_access_key} 
 		export AWS_SECRET_ACCESS_KEY=${var.aws_secret_key}
 		export AWS_DEFAULT_REGION=us-east-1
@@ -47,7 +47,7 @@ resource "aws_instance" "cda_instance" {
 }
 
 resource "aws_ses_template" "MyTemplateJ" {
-	name    = "MyTemplateJ_${var.instance_id}"
+	name    = "MyTemplateJ_${local.instance_id}"
 	subject = "Greetings, Jeny!"
 	html    = "<h1>Hello Jeny,</h1><p>Your app url is http://${aws_instance.cda_instance.*.public_ip[0]}.</p>"
 	text    = "Hello Jeny, Your app url is http://${aws_instance.cda_instance.*.public_ip[0]}."
