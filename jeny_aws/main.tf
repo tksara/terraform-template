@@ -8,10 +8,6 @@ resource "random_string" "password" {
   override_special = "/@\" "
 }
 
-resource "aws_db_instance" "example" {
-  password = "${random_string.password.result}"
-}
-
 resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
 	instance_type          = "t2.micro"
