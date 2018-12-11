@@ -25,5 +25,3 @@ variable "aws_security_group_id" {
 variable "email" {
 	default = "jenya.stoeva@broadcom.com"
 }
-
-variable "template_index" {}
