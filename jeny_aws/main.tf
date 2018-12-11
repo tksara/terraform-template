@@ -12,18 +12,6 @@ resource "aws_db_instance" "example" {
   password = "${random_string.password.result}"
 }
 
-resource "aws_alb_listener_rule" "main" {
-  listener_arn = "${var.listener_arn}"
-  priority     = "${random_integer.priority.result}"
-
-  action {
-    type             = "forward"
-    target_group_arn = "${var.target_group_arn}"
-  }
-  # ... (other aws_alb_listener_rule arguments) ...
-}
-
-
 resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
 	instance_type          = "t2.micro"
