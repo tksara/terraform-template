@@ -34,11 +34,20 @@ resource "aws_instance" "cda_instance" {
 		git clone https://github.com/aws/aws-cli.git
 		python --version
 		cd /tmp
-		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
-		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplate", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"alligator\" }"}' >myemail1.json
-		aws configure --region use-east-1
+		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate1",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
+		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplate1", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"${aws_instance.cda_instance.*.public_ip[0]}\" }"}' >myemail1.json
+		export AWS_ACCESS_KEY_ID=${var.aws_access_key} 
+		export AWS_SECRET_ACCESS_KEY=${var.aws_secret_key}
+		export AWS_DEFAULT_REGION=us-east-1
 		aws ses send-templated-email --cli-input-json file://myemail1.json
 	HEREDOC
+}
+
+resource "aws_ses_template" "MyTemplate" {
+	name    = "MyTemplate"
+	subject = "Greetings, Jeny!"
+	html    = "<h1>Hello Jeny,</h1><p>Your AWS Instance public IP ${aws_instance.cda_instance.*.public_ip[0]}.</p>"
+	text    = "Hello Jeny,\r\nYour favorite animal is ${aws_instance.cda_instance.*.public_ip[0]}."
 }
 
 output "public_ip" {
