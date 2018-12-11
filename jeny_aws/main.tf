@@ -1,5 +1,5 @@
 locals {
-  in_id = "${aws_instance.cda_instance.*.id[0]}"
+  in_id = "${random_integer.priority.*.id[0]}"
 }
 
 provider "aws" {
@@ -8,6 +8,25 @@ provider "aws" {
 	secret_key = "${var.aws_secret_key}"
 }
 
+resource "random_integer" "priority" {
+  min     = 1
+  max     = 99999
+  keepers = {
+    # Generate a new integer each time we switch to a new listener ARN
+    listener_arn = "${var.listener_arn}"
+  }
+}
+
+resource "aws_alb_listener_rule" "main" {
+  listener_arn = "${var.listener_arn}"
+  priority     = "${random_integer.priority.result}"
+
+  action {
+    type             = "forward"
+    target_group_arn = "${var.target_group_arn}"
+  }
+  # ... (other aws_alb_listener_rule arguments) ...
+}
 
 
 resource "aws_instance" "cda_instance" {
