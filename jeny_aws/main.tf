@@ -34,8 +34,7 @@ resource "aws_instance" "cda_instance" {
 		git clone https://github.com/aws/aws-cli.git
 		python --version
 		cd /tmp
-		printf '%s\n' '{' '"Template": {' '"TemplateName": "MyTemplate",' '"SubjectPart": "Greetings, {{name}}!",' '"HtmlPart": "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>",' '"TextPart": "Dear {{name}},\r\nYour favorite animal is {{favoriteanimal}}."' '}}' >mytemplate.json
-		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{ \"name\":\"Alejandro\", \"favoriteanimal\": \"test123\" }"}' >myemail1.json
+		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}}' >myemail1.json
 		export AWS_ACCESS_KEY_ID=${var.aws_access_key} 
 		export AWS_SECRET_ACCESS_KEY=${var.aws_secret_key}
 		export AWS_DEFAULT_REGION=us-east-1
