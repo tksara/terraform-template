@@ -1,19 +1,10 @@
 locals {
-<<<<<<< HEAD
-	in_id = "${random_string.password.result}"
-}
-
-resource "random_string" "password" {
-	length = 10
-	special = false
-=======
   in_id = "${random_string.password.result}"
 }
 
 resource "random_string" "password" {
   length = 10
   special = false
->>>>>>> 4e8dbad33ac2b09b9f792e35eb9cbaf26334cbb0
 }
 
 provider "aws" {
@@ -26,17 +17,10 @@ resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
 	instance_type          = "t2.micro"
 	vpc_security_group_ids = ["${var.aws_security_group_id}"]
-<<<<<<< HEAD
-	//	vpc_security_group_ids = "alabala"
-	//	key_name	       = "${var.aws_key_name}"
-	key_name	= "jeny-key-us-east-1"
-
-=======
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
 	key_name	= "jeny-key-us-east-1"
 	
->>>>>>> 4e8dbad33ac2b09b9f792e35eb9cbaf26334cbb0
 	user_data = <<HEREDOC
 		#!/bin/bash
 		yum update -y
