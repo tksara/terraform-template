@@ -1,9 +1,9 @@
 variable "aws_access_key" {
-	default = "alabala"
+  default = "alabala"
 }
 
 variable "aws_secret_key" {
-	default = "alabala"
+  default = "alabala"
 }
 
 variable "aws_key_name" {

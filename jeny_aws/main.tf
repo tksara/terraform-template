@@ -3,8 +3,8 @@ locals {
 }
 
 resource "random_string" "password" {
-	length = 10
-	special = false
+  length = 10
+  special = false
 }
 
 provider "aws" {
