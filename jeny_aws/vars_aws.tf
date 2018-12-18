@@ -15,7 +15,11 @@ variable "private_key_file" {
 }
 variable "aws_ami" {
 	default = "ami-0080e4c5bc078760e"
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 4e8dbad33ac2b09b9f792e35eb9cbaf26334cbb0
 }
 
 variable "aws_security_group_id" {
