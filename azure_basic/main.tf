@@ -4,7 +4,6 @@ variable "client_id" {}
 variable "tenant_id" {}
 
 provider "azurerm" {
-	version = "1.20.0"
 
 	subscription_id = "${var.subscription_id}"
 	client_id       = "${var.client_id}"
