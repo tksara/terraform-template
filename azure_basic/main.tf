@@ -32,7 +32,7 @@ resource "azurerm_subnet" "internal" {
 
 resource "azurerm_network_interface" "test_instance" {
 	name                = "network_interface"
-	location            = "East US"
+	location            = "eastus"
 	resource_group_name = "${azurerm_resource_group.test.name}"
 
 	ip_configuration {
