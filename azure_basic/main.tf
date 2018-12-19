@@ -13,7 +13,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "test" {
 	name = "test_group"
-	location = "East US"
+	location = "EastUS"
 }
 
 resource "azurerm_virtual_network" "test_instance" {
