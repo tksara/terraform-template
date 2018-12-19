@@ -30,18 +30,6 @@ resource "azurerm_subnet" "internal" {
 	address_prefix       = "10.0.2.0/24"
 }
 
-resource "azurerm_network_interface" "test_instance" {
-	name                = "network_interface"
-	location            = "${azurerm_resource_group.test.location}"
-	resource_group_name = "${azurerm_resource_group.test.name}"
-
-	ip_configuration {
-		name                          = "testconfiguration1"
-		subnet_id                     = "${azurerm_subnet.internal.id}"
-		private_ip_address_allocation = "dynamic"
-	}
-}
-
 resource "azurerm_virtual_machine" "main" {
 	name = "test-vm"
 	location = "${azurerm_resource_group.test.location}"
