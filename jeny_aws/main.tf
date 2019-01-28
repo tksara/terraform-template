@@ -15,7 +15,7 @@ provider "aws" {
 
 resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
-	instance_type          = "t3.xlarge"
+	instance_type          = "a1.2xlarge"
 	vpc_security_group_ids = ["${var.aws_security_group_id}"]
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
