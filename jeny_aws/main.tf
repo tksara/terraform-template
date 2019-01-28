@@ -30,7 +30,6 @@ resource "aws_instance" "cda_instance" {
 		curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose	
 		chmod +x /usr/local/bin/docker-compose
 		sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-		docker-compose --version
 		yum install -y git
 		mkdir  /tmp/jenya
                 cd /tmp/jenya
@@ -38,8 +37,6 @@ resource "aws_instance" "cda_instance" {
 		cd requestbin
 		docker-compose build
 		docker-compose up -d
-		git clone https://github.com/aws/aws-cli.git
-		python --version
 		cd /tmp
 		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ_${local.in_id}", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{}"}' >myemail1.json
 		export AWS_ACCESS_KEY_ID=${var.access_key} 
