@@ -1,7 +1,9 @@
 variable "project" {default = "my_project_id"}
+variable "credentials" {}
 
 provider "google" {
   credentials = "${file("account.json")}"
+  credentials = "${var.credentials}"
   project     = "${var.project}"
   region      = "us-central1"
 }
