@@ -4,14 +4,14 @@ variable "credentials" {}
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
-  region      = "us-west1-b"
+  region      = "us-west1"
 }
 
-data "google_compute_zones" "available" {}
+
 
 resource "google_compute_instance" "default" {
   project = "${var.project}"
-  zone = "${data.google_compute_zones.available.names[0]}"
+  zone = "us-west1-b"
   name = "tf-compute-1"
   machine_type = "Jeny-EM Test Instance"
   boot_disk {
