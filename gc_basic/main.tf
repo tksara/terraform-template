@@ -12,8 +12,8 @@ provider "google" {
 resource "google_compute_instance" "default" {
   project = "${var.project}"
   zone = "us-west1-b"
-  name = "tf-compute-1"
-  machine_type = "Jeny-EM Test Instance"
+  name = "Jeny-EM Test Instance"
+  machine_type = "f1-micro"
   boot_disk {
     initialize_params {
       image = "ubuntu-1604-xenial-v20190212"
