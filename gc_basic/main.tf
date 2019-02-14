@@ -2,10 +2,9 @@ variable "project" {default = "my_project_id"}
 variable "credentials" {}
 
 provider "google" {
-  credentials = "${file("account.json")}"
   credentials = "${var.credentials}"
   project     = "${var.project}"
-  region      = "us-central1"
+  region      = "us-west1-b"
 }
 
 data "google_compute_zones" "available" {}
@@ -17,7 +16,7 @@ resource "google_compute_instance" "default" {
   machine_type = "f1-micro"
   boot_disk {
     initialize_params {
-      image = "ubuntu-1604-xenial-v20170328"
+      image = "ubuntu-1604-xenial-v20190212"
     }
   }
   network_interface {
