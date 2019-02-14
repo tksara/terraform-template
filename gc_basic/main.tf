@@ -12,7 +12,7 @@ provider "google" {
 resource "google_compute_instance" "default" {
   project = "${var.project}"
   zone = "us-west1-b"
-  name = "Jeny-EM Test Instance"
+  name = "jeny-em-test"
   machine_type = "f1-micro"
   boot_disk {
     initialize_params {
