@@ -18,10 +18,26 @@ variable "network_ip" {
   default     = ""
 }
 
+variable "network_cidr" {
+  default = "10.127.0.0/20"
+}
+
+variable "network_name" {
+  default = "tf-custom-machine"
+}
+
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
   region      = "us-west1"
+}
+
+resource "google_compute_subnetwork" "default" {
+  name                     = "${var.network_name}"
+  ip_cidr_range            = "${var.network_cidr}"
+  network                  = "${google_compute_network.default.self_link}"
+  region                   = "us-west1"
+  private_ip_google_access = true
 }
 
 resource "google_compute_instance" "default" {
