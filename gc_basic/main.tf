@@ -26,6 +26,11 @@ variable "network_name" {
   default = "tf-custom-machine"
 }
 
+resource "google_compute_network" "default" {
+  name                    = "${var.network_name}"
+  auto_create_subnetworks = false
+}
+
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
@@ -35,6 +40,7 @@ provider "google" {
 resource "google_compute_subnetwork" "default" {
   name                     = "${var.network_name}"
   ip_cidr_range            = "${var.network_cidr}"
+  network                  = "${google_compute_network.default.self_link}"
   region                   = "us-west1"
   private_ip_google_access = true
 }
