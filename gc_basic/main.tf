@@ -57,4 +57,13 @@ resource "google_compute_instance" "default" {
       image = "ubuntu-1604-xenial-v20190212"
     }
   }
+  
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral IP
+    }
+  }
+  
   }
