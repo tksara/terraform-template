@@ -19,11 +19,6 @@ resource "google_compute_instance" "default" {
       image = "ubuntu-1604-xenial-v20190212"
     }
   }
-  network_interface {
-    network = "esd-general-dev-us-west1"
-    access_config {
-    }
-  }
 }
 
 output "instance_id" {
