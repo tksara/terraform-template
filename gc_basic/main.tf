@@ -20,7 +20,7 @@ resource "google_compute_instance" "default" {
     }
   }
   network_interface {
-    network = "default"
+    network = "esd-general-dev-us-west1"
     access_config {
     }
   }
