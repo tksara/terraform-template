@@ -57,4 +57,4 @@ resource "google_compute_instance" "default" {
       image = "ubuntu-1604-xenial-v20190212"
     }
   }
- 
+  }
