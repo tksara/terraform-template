@@ -7,21 +7,6 @@ variable "num_nodes" {
   default     = 1
 }
 
-variable "access_config" {
-  description = "The access config block for the instances. Set to [{}] for ephemeral external IP."
-  type        = "list"
-  default     = []
-}
-
-variable "network_ip" {
-  description = "Set the network IP of the instance. Useful only when num_nodes is equal to 1."
-  default     = ""
-}
-
-variable "network_cidr" {
-  default = "10.127.0.0/20"
-}
-
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
@@ -46,4 +31,4 @@ resource "google_compute_instance" "jeny-em-test" {
      access_config {}
   } 
   
-  }
+}
