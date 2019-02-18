@@ -13,11 +13,6 @@ provider "google" {
   region      = "us-west1"
 }
 
-resource "google_compute_network" "default" {
-  name                    = "test-network"
-  auto_create_subnetworks = "false"
-}
-
 resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
@@ -31,8 +26,7 @@ resource "google_compute_instance" "default" {
     }
   }
   
-  network_interface {
-     network = "${google_compute_network.default.name}"
-  } 
-  
+ network_interface {
+    subnetwork    = "esd-general-dev-us-west1	"
+  }
 }
