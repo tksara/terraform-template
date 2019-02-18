@@ -27,7 +27,7 @@ resource "google_compute_instance" "default" {
   }
   
   network_interface {
-    subnetwork = "test-network-sub	"
+    subnetwork = "test-network-sub"
    subnetwork_project ="esd-general-dev"
   }
 }
