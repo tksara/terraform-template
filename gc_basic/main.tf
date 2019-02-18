@@ -22,30 +22,13 @@ variable "network_cidr" {
   default = "10.127.0.0/20"
 }
 
-variable "network_name" {
-  default = "tf-custom-machine"
-}
-
-resource "google_compute_network" "default" {
-  name                    = "${var.network_name}"
-  auto_create_subnetworks = false
-}
-
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
   region      = "us-west1"
 }
 
-resource "google_compute_subnetwork" "default" {
-  name                     = "${var.network_name}"
-  ip_cidr_range            = "${var.network_cidr}"
-  network                  = "${google_compute_network.default.self_link}"
-  region                   = "us-west1"
-  private_ip_google_access = true
-}
-
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "jeny-em-test" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
   zone         = "us-west1-b"
@@ -59,11 +42,8 @@ resource "google_compute_instance" "default" {
   }
   
   network_interface {
-    network = "test-network"
-
-    access_config {
-      // Ephemeral IP
-    }
-  }
+     network = "default"
+     access_config {}
+  } 
   
   }
