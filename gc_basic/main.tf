@@ -29,4 +29,9 @@ resource "google_compute_instance" "default" {
  network_interface {
     network    = "esd-general-dev-us-west1"
   }
+  
+  network_interface {
+    subnetwork = "esd-general-dev-us-west1"
+   subnetwork_project ="shared-services-080817"
+  }
 }
