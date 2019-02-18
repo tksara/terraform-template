@@ -42,7 +42,7 @@ resource "google_compute_instance" "jeny-em-test" {
   }
   
   network_interface {
-     network = "default"
+     network = "jeny-em-test"
      access_config {}
   } 
   
