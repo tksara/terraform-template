@@ -13,7 +13,7 @@ provider "google" {
   region      = "us-west1"
 }
 
-resource "google_compute_instance" "jeny-em-test" {
+resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
   zone         = "us-west1-b"
