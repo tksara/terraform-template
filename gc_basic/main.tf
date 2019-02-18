@@ -42,7 +42,7 @@ resource "google_compute_instance" "jeny-em-test" {
   }
   
   network_interface {
-     network = "tf-custom-machine"
+     network = "default"
      access_config {}
   } 
   
