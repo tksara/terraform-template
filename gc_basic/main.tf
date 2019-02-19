@@ -7,6 +7,15 @@ variable "num_nodes" {
   default     = 2
 }
 
+locals {
+	id = "${random_string.id_extension.result}"
+}
+
+resource "random_string" "id_extension" {
+  length = 10
+  special = false
+}
+
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
@@ -17,7 +26,7 @@ resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
   zone         = "us-west1-b"
-  name         = "jeny-em-test"
+  name         = "jeny-em-test_${local.id}"
   machine_type = "f1-micro"
   
   boot_disk {
