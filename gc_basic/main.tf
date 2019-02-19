@@ -4,7 +4,7 @@ variable "credentials" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
-  default     = 10
+  default     = 0
 }
 
 locals {
