@@ -26,7 +26,7 @@ resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
   zone         = "us-west1-b"
-  name         = "jeny-em-test_${local.id}"
+  name         = "jeny-em-test-${local.id}"
   machine_type = "f1-micro"
   
   boot_disk {
