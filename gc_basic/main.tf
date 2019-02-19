@@ -1,4 +1,4 @@
-variable "project" {default = "esd-general-dev"}
+variable "project" {default = ""}
 
 variable "credentials" {}
 
