@@ -8,12 +8,12 @@ variable "num_nodes" {
 }
 
 locals {
-	id = "${random_string.id_extension.result}"
+	id = "${random_integer.name_extension.result}"
 }
 
-resource "random_string" "id_extension" {
-  length = 10
-  special = false
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
 }
 
 provider "google" {
