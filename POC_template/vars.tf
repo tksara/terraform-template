@@ -1,9 +1,9 @@
 variable "aws_access" {
-	default = "AKIAJPLR42QDMB7LIW4A"
+	default = ""
 }
 
 variable "aws_secret" {
-	default = "pAzG6nJAUBOGSLxVwBbwLG8f9TLyBLLixnXOUUjC"
+	default = ""
 }
 
 variable "agent_name" {
