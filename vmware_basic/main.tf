@@ -1,34 +1,34 @@
 variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
-variable "vsphere_server" {default = ""}
+variable "vsphere_server" {default = "vvievc01"}
 
-provider "vsphere" {
+provider "vcenter_server" {
   user           = "${var.vsphere_user}"
   password       = "${var.vsphere_password}"
   vsphere_server = "${var.vsphere_server}"
 }
 
 data "vsphere_datacenter" "dc" {
-  name = "dc1"
+  name = "vvievc01.sbb01.spoc.global"
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "datastore1"
+  name          = "Testcluster"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_resource_pool" "pool" {
-  name          = "cluster1/Resources"
+  name          = "Testcluster/normalPerf"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_network" "network" {
-  name          = "public"
+  name          = "VM Network"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-test"
+  name             = "terraform-test-vm"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
