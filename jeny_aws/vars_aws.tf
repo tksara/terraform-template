@@ -1,8 +1,8 @@
-variable "aws_access_key" {
+variable "access_key" {
   default = "alabala"
 }
 
-variable "aws_secret_key" {
+variable "secret_key" {
   default = "alabala"
 }
 

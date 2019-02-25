@@ -9,13 +9,13 @@ resource "random_string" "password" {
 
 provider "aws" {
 	region     = "us-east-1"
-	access_key = "${var.aws_access_key}"
-	secret_key = "${var.aws_secret_key}"
+	access_key = "${var.access_key}"
+	secret_key = "${var.secret_key}"
 }
 
 resource "aws_instance" "cda_instance" {
 	ami                    = "${var.aws_ami}"
-	instance_type          = "t2.micro"
+	instance_type          = "t3.xlarge"
 	vpc_security_group_ids = ["${var.aws_security_group_id}"]
 //	vpc_security_group_ids = "alabala"
 //	key_name	       = "${var.aws_key_name}"
@@ -30,7 +30,6 @@ resource "aws_instance" "cda_instance" {
 		curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose	
 		chmod +x /usr/local/bin/docker-compose
 		sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-		docker-compose --version
 		yum install -y git
 		mkdir  /tmp/jenya
                 cd /tmp/jenya
@@ -38,12 +37,10 @@ resource "aws_instance" "cda_instance" {
 		cd requestbin
 		docker-compose build
 		docker-compose up -d
-		git clone https://github.com/aws/aws-cli.git
-		python --version
 		cd /tmp
 		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ_${local.in_id}", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{}"}' >myemail1.json
-		export AWS_ACCESS_KEY_ID=${var.aws_access_key} 
-		export AWS_SECRET_ACCESS_KEY=${var.aws_secret_key}
+		export AWS_ACCESS_KEY_ID=${var.access_key} 
+		export AWS_SECRET_ACCESS_KEY=${var.secret_key}
 		export AWS_DEFAULT_REGION=us-east-1
 		aws ses send-templated-email --cli-input-json file://myemail1.json
 	HEREDOC

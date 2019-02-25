@@ -1,30 +1,42 @@
-variable "project" {default = "my_project_id"}
+variable "project" {default = "esd-general-dev"}
+
+variable "credentials" {}
+
+variable "num_nodes" {
+  description = "Number of nodes to create"
+  default     = 2
+}
+
+locals {
+	id = "${random_integer.name_extension.result}"
+}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
 
 provider "google" {
-  credentials = "${file("account.json")}"
+  credentials = "${var.credentials}"
   project     = "${var.project}"
-  region      = "us-central1"
+  region      = "us-west1"
 }
-
-data "google_compute_zones" "available" {}
 
 resource "google_compute_instance" "default" {
-  project = "${var.project}"
-  zone = "${data.google_compute_zones.available.names[0]}"
-  name = "tf-compute-1"
+  count        = "${var.num_nodes}"
+  project      = "${var.project}"
+  zone         = "us-west1-b"
+  name         = "jeny-em-test-${count.index + 1}-${local.id}"
   machine_type = "f1-micro"
+  
   boot_disk {
     initialize_params {
-      image = "ubuntu-1604-xenial-v20170328"
+      image = "ubuntu-1604-xenial-v20190212"
     }
   }
+  
   network_interface {
-    network = "default"
-    access_config {
-    }
+    subnetwork = "test-network-sub"
+    subnetwork_project ="esd-general-dev"
   }
-}
-
-output "instance_id" {
-  value = "${google_compute_instance.default.self_link}"
 }
