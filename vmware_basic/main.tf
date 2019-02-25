@@ -1,6 +1,6 @@
 variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
-variable "vsphere_server" {default = "vvievc01"}
+variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 
 provider "vsphere" {
   user           = "${var.vsphere_user}"
