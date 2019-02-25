@@ -2,7 +2,7 @@ variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01"}
 
-provider "vcenter_server" {
+provider "vsphere" {
   user           = "${var.vsphere_user}"
   password       = "${var.vsphere_password}"
   vsphere_server = "${var.vsphere_server}"
