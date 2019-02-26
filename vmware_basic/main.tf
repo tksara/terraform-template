@@ -21,7 +21,7 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_resource_pool" "pool" {
-  name          = "normalPerf"
+  name          = "highPerf"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -36,7 +36,7 @@ resource "vsphere_virtual_machine" "vm" {
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
 
   num_cpus = 2
-  memory   = 1024
+  memory   = 16384
   guest_id = "other3xLinux64Guest"
 
   network_interface {
@@ -45,6 +45,6 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = 20
+    size  = 150
   }
 }
