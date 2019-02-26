@@ -37,7 +37,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   num_cpus = 2
   memory   = 16384
-  guest_id = "other3xLinux64Guest"
+  guest_id = "MicrosoftWindowsServer2012(64-bit)"
 
   network_interface {
     network_id = "${data.vsphere_network.network.id}"
