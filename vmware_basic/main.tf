@@ -12,7 +12,7 @@ provider "vsphere" {
 }
 
 data "vsphere_datacenter" "dc" {
-  name = "vvievc01.sbb01.spoc.global"
+  name = "Test"
 }
 
 data "vsphere_datastore" "datastore" {
