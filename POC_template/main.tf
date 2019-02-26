@@ -21,7 +21,7 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_resource_pool" "pool" {
-  name          = "normalPerf"
+  name          = "highPerf"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
