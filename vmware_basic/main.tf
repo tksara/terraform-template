@@ -16,7 +16,7 @@ data "vsphere_datacenter" "dc" {
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "Testcluster"
+  name          = "extvimDatastorcluster/local Storage svievmw04"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
