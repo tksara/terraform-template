@@ -52,7 +52,7 @@ resource "vsphere_virtual_machine" "vm" {
   disk {
     label = "disk0"
     size  = 150
-    thin_provisioned = false
+    thin_provisioned = true
   }
   
   clone {
