@@ -31,7 +31,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "vm_from_ospec3"
+  name          = "ubuntu-template"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
