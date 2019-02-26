@@ -61,10 +61,6 @@ resource "vsphere_virtual_machine" "vm" {
         host_name = "terraform-test"
         domain    = "test.internal"
       }
-      
-      network_interface {
-        network_id   = "${data.vsphere_network.public.id}"
-      }
     }  
   }
 }
