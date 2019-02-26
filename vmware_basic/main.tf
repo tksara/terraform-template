@@ -31,7 +31,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "New Virtual Machine"
+  name          = "Nvm_from_ospec3"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -56,12 +56,5 @@ resource "vsphere_virtual_machine" "vm" {
   
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-
-    customize {
-      linux_options {
-        host_name = "terraform-test"
-        domain    = "test.internal"
-      }
-    }  
   }
 }
