@@ -20,8 +20,8 @@ data "vsphere_datastore" "datastore" {
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
-data "vsphere_resource_pool" "pool" {
-  name          = "highPerf"
+data "vsphere_compute_cluster" "cluster" {
+  name          = "Testcluster"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -30,14 +30,21 @@ data "vsphere_network" "network" {
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
-resource "vsphere_virtual_machine" "nguta04_sample" {
-  name             = "nguta04_machine"
-  resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
+data "vsphere_virtual_machine" "template" {
+  name          = "ubuntu-template"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+resource "vsphere_virtual_machine" "vm" {
+  name             = "terraform-test"
+  resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  folder           = "em"
 
   num_cpus = 2
-  memory   = 1024
-  guest_id = "other3xLinux64Guest"
+  memory   = 16384
+  wait_for_guest_net_timeout = 0
+  guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
     network_id = "${data.vsphere_network.network.id}"
@@ -45,7 +52,12 @@ resource "vsphere_virtual_machine" "nguta04_sample" {
 
   disk {
     label = "disk0"
-    size  = 20
+    size  = 150
+    thin_provisioned = true
+  }
+  
+  clone {
+    template_uuid = "${data.vsphere_virtual_machine.template.id}"
   }
 	
   provisioner "remote-exec" {
@@ -60,38 +72,38 @@ resource "vsphere_virtual_machine" "nguta04_sample" {
 		}
 	}
 	
-	provisioner "file" {
-		source      = "./artifacts"
-		destination = "/home/ubuntu/AE"
+  provisioner "file" {
+	source      = "./artifacts"
+	destination = "/home/ubuntu/AE"
 		
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("./nguta04.pem")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("./nguta04.pem")}"
 	}
+ }
 	
-	provisioner "file" {
-		source      = "./install_agent_servicemanager.sh"
-		destination = "/home/ubuntu/AE/install_agent_servicemanager.sh"
+ provisioner "file" {
+	source      = "./install_agent_servicemanager.sh"
+	destination = "/home/ubuntu/AE/install_agent_servicemanager.sh"
 	
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("./nguta04.pem")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("./nguta04.pem")}"
 	}
+ }
 	
-	provisioner "remote-exec" {
-		inline = [
-			"chmod +x /home/ubuntu/AE/install_agent_servicemanager.sh",
-			"/home/ubuntu/AE/install_agent_servicemanager.sh ${var.agent_name} ${var.ae_host} ${var.ae_port} ${var.sm_port}"
-		]
+ provisioner "remote-exec" {
+	inline = [
+		"chmod +x /home/ubuntu/AE/install_agent_servicemanager.sh",
+		"/home/ubuntu/AE/install_agent_servicemanager.sh ${var.agent_name} ${var.ae_host} ${var.ae_port} ${var.sm_port}"
+	]
 		
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("./nguta04.pem")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("./nguta04.pem")}"
 	}
+ }
 }
