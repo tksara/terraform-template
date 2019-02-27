@@ -62,16 +62,16 @@ resource "vsphere_virtual_machine" "vm" {
   }
 	
   provisioner "remote-exec" {
-		inline = [
-			"mkdir -p /home/ubuntu/AE"
-		]
+	inline = [
+		"mkdir -p /home/ubuntu/AE"
+	]
 		
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${var.private_key}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "automic"
+		private_key = "${file("./nguta04.pem")}"
 	}
+  }
 	
   provisioner "file" {
 	source      = "./artifacts"
