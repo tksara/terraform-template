@@ -2,6 +2,7 @@ variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 variable "private_key" {default =""}
+variable "ubuntu_password" {defauld =""}
 
 provider "vsphere" {
   user           = "${var.vsphere_user}"
@@ -69,7 +70,7 @@ resource "vsphere_virtual_machine" "vm" {
 	connection {
 		type        = "ssh"
 		user        = "automic"
-		private_key = "${file("./nguta04.pem")}"
+		password    = "${var.ubuntu_password}"
 	}
   }
 	
