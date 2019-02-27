@@ -40,10 +40,10 @@ resource "vsphere_virtual_machine" "vm" {
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   folder           = "em"
-  wait_for_guest_net_timeout = 0.5
 
   num_cpus = 2
   memory   = 16384
+  wait_for_guest_net_timeout = 0
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
