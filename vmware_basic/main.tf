@@ -31,7 +31,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "ubuntu-template"
+  name          = "ubuntu-minimal-template"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
