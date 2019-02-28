@@ -3,5 +3,5 @@ variable "remote_working_dir" {
 }
 
 variable "private_key_file" {
-	default = "./key1.pem"
+	default = "./id_rsa"
 }
