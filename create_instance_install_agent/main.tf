@@ -1,7 +1,38 @@
-provider "aws" {
-	region     = "us-east-2"
-	access_key = "${var.aws_access_key}"
-	secret_key = "${var.aws_secret_key}"
+variable "vsphere_user" {default =""}
+variable "vsphere_password" {default =""}
+variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
+
+provider "vsphere" {
+  user           = "${var.vsphere_user}"
+  password       = "${var.vsphere_password}"
+  vsphere_server = "${var.vsphere_server}"
+  
+  # If you have a self-signed cert
+  allow_unverified_ssl = true
+}
+
+data "vsphere_datacenter" "dc" {
+  name = "Test"
+}
+
+data "vsphere_datastore" "datastore" {
+  name          = "extvimDatastorcluster/local Storage svievmw04"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_compute_cluster" "cluster" {
+  name          = "Testcluster"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_network" "network" {
+  name          = "VM Network"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_virtual_machine" "template" {
+  name          = "ubuntu-minimal-template"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 resource "aws_instance" "cda_instance" {
