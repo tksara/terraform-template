@@ -26,7 +26,7 @@ data "vsphere_compute_cluster" "cluster" {
 }
 
 data "vsphere_network" "network" {
-  name          = "VM Network"
+  name          = "Client_35"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
