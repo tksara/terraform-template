@@ -35,64 +35,78 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
-resource "aws_instance" "cda_instance" {
-	ami                    = "${var.aws_ami}"
-	instance_type          = "t2.micro"
-	vpc_security_group_ids = ["${var.aws_security_group_id}"]
-//	vpc_security_group_ids = "vpc-cab585a2"
-	key_name	       = "${var.aws_key_name}"
+resource "vsphere_virtual_machine" "vm" {
+  name             = "terraform-test"
+  resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
+  datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  folder           = "em"
 
-	tags {
-		Name = "cda_instance"
+  num_cpus = 2
+  memory   = 16384
+  wait_for_guest_net_timeout = 0
+  guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
+
+  network_interface {
+    network_id = "${data.vsphere_network.network.id}"
+  }
+
+  disk {
+    label = "disk0"
+    size  = 150
+    thin_provisioned = true
+  }
+  
+  clone {
+    template_uuid = "${data.vsphere_virtual_machine.template.id}"
+  }
+	
+  provisioner "remote-exec" {
+	inline = [
+		"mkdir -p ${var.remote_working_dir}",
+		"mkdir -p ${var.remote_working_dir}/scripts"
+	]
+
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
 	}
+  }
 
-	provisioner "remote-exec" {
-		inline = [
-			"mkdir -p ${var.remote_working_dir}",
-			"mkdir -p ${var.remote_working_dir}/scripts"
-		]
+  provisioner "file" {
+	source      = "artifacts"
+	destination = "${var.remote_working_dir}"
 
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
 	}
+  }
 
-	provisioner "file" {
-		source      = "artifacts"
-		destination = "${var.remote_working_dir}"
+  provisioner "file" {
+	source      = "scripts/remote/agent_sm_installation.sh"
+	destination = "${var.remote_working_dir}/scripts/agent_sm_installation.sh"
 
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
 	}
+  }
 
-	provisioner "file" {
-		source      = "scripts/remote/agent_sm_installation.sh"
-		destination = "${var.remote_working_dir}/scripts/agent_sm_installation.sh"
+  provisioner "remote-exec" {
+	inline = [
+		"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
+		"${var.remote_working_dir}/scripts/agent_sm_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\""
+	]
 
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
 	}
-
-	provisioner "remote-exec" {
-		inline = [
-			"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
-			"${var.remote_working_dir}/scripts/agent_sm_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\""
-		]
-
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-	}
+  }
 }
 
 
