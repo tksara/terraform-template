@@ -109,4 +109,8 @@ resource "vsphere_virtual_machine" "vm" {
   }
 }
 
-
+resource "random_string" "cda_entity_name" {
+	length  = 10
+	special = false
+	lower   = false
+}
