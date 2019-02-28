@@ -2,6 +2,15 @@ variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 
+locals {
+	id = "${random_integer.name_extension.result}"
+}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
+
 provider "vsphere" {
   user           = "${var.vsphere_user}"
   password       = "${var.vsphere_password}"
@@ -36,7 +45,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-test"
+  name             = "terraform-test-${local.id}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   folder           = "em"
