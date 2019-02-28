@@ -51,7 +51,7 @@ resource "vsphere_virtual_machine" "vm" {
   folder           = "em"
 
   num_cpus = 2
-  memory   = 16384
+  memory   = 8192
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
@@ -60,7 +60,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = 150
+    size  = 20
     thin_provisioned = true
   }
   
