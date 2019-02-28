@@ -68,7 +68,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "automic"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -79,7 +79,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "automic"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -90,7 +90,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "automic"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -103,7 +103,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "automic"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
