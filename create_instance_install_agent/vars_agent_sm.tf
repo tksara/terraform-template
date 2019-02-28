@@ -3,11 +3,11 @@ variable "agent_name_prefix" {
 }
 
 variable "agent_user" {
-	default = "ubuntu"
+	default = "automic"
 }
 
 variable "agent_pass" {
-	default = "ubuntu"
+	default = "automic"
 }
 
 variable "ae_host" {
