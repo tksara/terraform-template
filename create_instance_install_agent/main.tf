@@ -50,31 +50,6 @@ resource "aws_instance" "cda_instance" {
 		}
 	}
 
-	provisioner "file" {
-		source      = "scripts/remote/tomcat_installation.sh"
-		destination = "${var.remote_working_dir}/scripts/tomcat_installation.sh"
-
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-	}
-
-
-	provisioner "remote-exec" {
-		inline = [
-			"chmod +x ${var.remote_working_dir}/scripts/tomcat_installation.sh",
-			"${var.remote_working_dir}/scripts/tomcat_installation.sh ${var.tomcat_user} ${var.tomcat_pass}"
-		]
-
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-	}
-
 	provisioner "remote-exec" {
 		inline = [
 			"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
