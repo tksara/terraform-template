@@ -1,5 +1,5 @@
 variable "remote_working_dir" {
-	default = "/home/ubuntu/AE"
+	default = "/home/automic/AE"
 }
 
 variable "private_key_file" {
