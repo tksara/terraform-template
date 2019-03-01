@@ -119,7 +119,7 @@ resource "vsphere_virtual_machine" "vm" {
 		password    = "${var.ubuntu_password}"
 	}
   }
-
+/*
   provisioner "file" {
 	source      = "scripts/local/create_cda_dpltarget.sh"
 	destination = "${var.remote_working_dir}/scripts/create_cda_dpltarget.sh"
@@ -145,7 +145,7 @@ resource "vsphere_virtual_machine" "vm" {
 		password    = "${var.ubuntu_password}"
 	}
   }
-
+*/
 /*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
