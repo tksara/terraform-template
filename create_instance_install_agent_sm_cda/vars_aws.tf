@@ -10,9 +10,6 @@ variable "aws_key_name" {
 	default = "key1"
 }
 
-variable "private_key_file" {
-	default = "./key1.pem"
-}
 variable "aws_ami" {
 	default = "ami-731c2016"
 }
