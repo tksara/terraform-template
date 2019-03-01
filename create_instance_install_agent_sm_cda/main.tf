@@ -49,7 +49,7 @@ resource "aws_instance" "cda_instance" {
 			private_key = "${file("${var.private_key_file}")}"
 		}
 	}
-
+/*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
 		destination = "${var.remote_working_dir}/scripts/tomcat_installation.sh"
@@ -60,8 +60,8 @@ resource "aws_instance" "cda_instance" {
 			private_key = "${file("${var.private_key_file}")}"
 		}
 	}
-
-
+*/
+/*
 	provisioner "remote-exec" {
 		inline = [
 			"chmod +x ${var.remote_working_dir}/scripts/tomcat_installation.sh",
@@ -74,7 +74,7 @@ resource "aws_instance" "cda_instance" {
 			private_key = "${file("${var.private_key_file}")}"
 		}
 	}
-
+*/
 	provisioner "remote-exec" {
 		inline = [
 			"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
@@ -97,23 +97,25 @@ resource "aws_instance" "cda_instance" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_environment.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.depltarget_prefix}${random_string.cda_entity_name.result}\" \"${var.cda_folder}\" \"${var.environment_prefix}${random_string.cda_entity_name.result}\""
 	}
-
+/*
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_login_object.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.cda_folder}\" \"${var.agent_user}\" \"${var.agent_pass}\" \"${var.agent_name_prefix}${random_string.cda_entity_name.result}\" \"${var.login_object_prefix}${random_string.cda_entity_name.result}\""
 	}
-
+*/
+/*
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_profile.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.profile_prefix}${random_string.cda_entity_name.result}\" \"${var.cda_folder}\" \"${var.login_object_prefix}${random_string.cda_entity_name.result}\" \"${var.application}\" \"${var.environment_prefix}${random_string.cda_entity_name.result}\""
 	}
-
+*/
+/*
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_execution.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.application}\" \"${var.workflow}\" \"${var.package}\" \"${var.profile_prefix}${random_string.cda_entity_name.result}\""
 	}
 }
-
+*/
 resource "random_string" "cda_entity_name" {
 	length  = 10
 	special = false
@@ -136,10 +138,13 @@ output "environment" {
 	value = "${var.environment_prefix}${random_string.cda_entity_name.result}"
 }
 
+/*
 output "login_object" {
 	value = "${var.login_object_prefix}${random_string.cda_entity_name.result}"
 }
-
+*/
+/*
 output "profile" {
 	value = "${var.profile_prefix}${random_string.cda_entity_name.result}"
 }
+*/
