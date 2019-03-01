@@ -1,5 +1,5 @@
 variable "cda_host" {
-	default = "http://10.131.39.166/cda" # format <http or https>://<cda_host or cda_ip>/cda_name
+	default = "http://10.243.44.139/cda" # format <http or https>://<cda_host or cda_ip>/cda_name
 }
 
 variable "cda_user" {
