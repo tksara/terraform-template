@@ -43,6 +43,7 @@ BODY=$(cat << EOF
 EOF
 )
 
+echo test1234
 curl -X POST $CDA_HOST/api/data/v1/deployment_targets -H "Authorization: Basic $AUTH" -H 'Content-Type: application/json' -d "$BODY"
 
 
