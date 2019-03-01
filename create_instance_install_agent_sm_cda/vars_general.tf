@@ -3,7 +3,7 @@ variable "remote_working_dir" {
 }
 
 variable "local_scripts_location" {
-	default = "/home/lefdo01/TNV/terraform-provisioning/scripts/local"
+	default = "./scripts/local"
 }
 
 variable "private_key_file" {
