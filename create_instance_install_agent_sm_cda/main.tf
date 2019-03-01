@@ -175,7 +175,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
-		command = "ls -al && pwd && chmod +x *.sh"
+		command = "chmod +x *.sh && ls -al && id && cat create_cda_dpltarget.sh"
 	}
 
 	provisioner "local-exec" {
