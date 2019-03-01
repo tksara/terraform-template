@@ -49,6 +49,20 @@ resource "aws_instance" "cda_instance" {
 			private_key = "${file("${var.private_key_file}")}"
 		}
 	}
+
+	provisioner "remote-exec" {
+		inline = [
+			"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
+			"${var.remote_working_dir}/scripts/agent_sm_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\""
+		]
+
+		connection {
+			type        = "ssh"
+			user        = "ubuntu"
+			private_key = "${file("${var.private_key_file}")}"
+		}
+	}
+
 /*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
@@ -75,18 +89,6 @@ resource "aws_instance" "cda_instance" {
 		}
 	}
 */
-	provisioner "remote-exec" {
-		inline = [
-			"chmod +x ${var.remote_working_dir}/scripts/agent_sm_installation.sh",
-			"${var.remote_working_dir}/scripts/agent_sm_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\""
-		]
-
-		connection {
-			type        = "ssh"
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-	}
 
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
