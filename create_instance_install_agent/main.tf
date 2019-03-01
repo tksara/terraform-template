@@ -2,6 +2,15 @@ variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 
+locals {
+	id = "${random_integer.name_extension.result}"
+}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
+
 provider "vsphere" {
   user           = "${var.vsphere_user}"
   password       = "${var.vsphere_password}"
@@ -26,7 +35,7 @@ data "vsphere_compute_cluster" "cluster" {
 }
 
 data "vsphere_network" "network" {
-  name          = "VM Network"
+  name          = "Client_35"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -36,14 +45,13 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = "terraform-test"
+  name             = "terraform-test-${local.id}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   folder           = "em"
 
   num_cpus = 2
-  memory   = 16384
-  wait_for_guest_net_timeout = 0
+  memory   = 8192
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   network_interface {
@@ -52,7 +60,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = 150
+    size  = 50
     thin_provisioned = true
   }
   
