@@ -120,6 +120,32 @@ resource "vsphere_virtual_machine" "vm" {
 	}
   }
 
+  provisioner "file" {
+	source      = "scripts/local/create_cda_dpltarget.sh"
+	destination = "${var.remote_working_dir}/scripts/create_cda_dpltarget.sh"
+
+	connection {
+		type        = "ssh"
+		user        = "automic"
+		private_key = "${file("${var.private_key_file}")}"
+		password    = "${var.ubuntu_password}"
+	}
+  }
+
+  provisioner "remote-exec" {
+	inline = [
+		"chmod +x ${var.remote_working_dir}/scripts/create_cda_dpltarget.sh",
+		"${var.remote_working_dir}/scripts/create_cda_dpltarget.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.agent_name_prefix}${random_string.cda_entity_name.result}\" \"${var.depltarget_prefix}${random_string.cda_entity_name.result}\" \"${vsphere_virtual_machine.vm.default_ip_address}\" \"${var.tomcat_home_dir}\" \"${var.tomcat_user}\" \"${var.tomcat_pass}\" \"${var.cda_folder}\"" 
+	]
+
+	connection {
+		type        = "ssh"
+		user        = "automic"
+		private_key = "${file("${var.private_key_file}")}"
+		password    = "${var.ubuntu_password}"
+	}
+  }
+
 /*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
