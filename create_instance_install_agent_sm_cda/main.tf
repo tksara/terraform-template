@@ -173,8 +173,9 @@ resource "vsphere_virtual_machine" "vm" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_execution.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.application}\" \"${var.workflow}\" \"${var.package}\" \"${var.profile_prefix}${random_string.cda_entity_name.result}\""
 	}
-}
 */
+}
+
 resource "random_string" "cda_entity_name" {
 	length  = 10
 	special = false
