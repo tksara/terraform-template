@@ -3,16 +3,16 @@ variable "agent_name_prefix" {
 }
 
 variable "agent_user" {
-	default = "ubuntu"
+	default = "automic"
 }
 
 variable "agent_pass" {
-	default = "ubuntu"
+	default = "automic"
 }
 
 
 variable "ae_host" {
-	default = "172.31.43.107" # Private IP of Proxy Server
+	default = "10.243.44.139" # Private IP of Proxy Server
 }
 
 variable "ae_port" {
