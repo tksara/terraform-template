@@ -172,12 +172,12 @@ resource "vsphere_virtual_machine" "vm" {
 		}
 	}
 */
-/*
+
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
-		command = "chmod +x *.sh && ls -al && id && cat create_cda_dpltarget.sh"
+		command = "chmod +x *.sh && ls -al && id && ls -al /bin/bash && dos2unix *.sh"
 	}
-*/
+
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_dpltarget.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.agent_name_prefix}${random_string.cda_entity_name.result}\" \"${var.depltarget_prefix}${random_string.cda_entity_name.result}\" \"${vsphere_virtual_machine.vm.default_ip_address}\" \"${var.tomcat_home_dir}\" \"${var.tomcat_user}\" \"${var.tomcat_pass}\" \"${var.cda_folder}\""
