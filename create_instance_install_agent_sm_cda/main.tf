@@ -175,7 +175,7 @@ resource "vsphere_virtual_machine" "vm" {
 
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
-		command = "chmod +x *.sh && ls -al && id && ls -al /bin/bash && dos2unix *.sh"
+		command = "chmod +x *.sh && apt-get -y install bash || yum -y install bash"
 	}
 
 	provisioner "local-exec" {
