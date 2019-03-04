@@ -119,10 +119,23 @@ resource "vsphere_virtual_machine" "vm" {
 		password    = "${var.ubuntu_password}"
 	}
   }
-/*
+
   provisioner "file" {
 	source      = "scripts/local/create_cda_dpltarget.sh"
 	destination = "${var.remote_working_dir}/scripts/create_cda_dpltarget.sh"
+
+	connection {
+		type        = "ssh"
+		user        = "automic"
+		private_key = "${file("${var.private_key_file}")}"
+		password    = "${var.ubuntu_password}"
+	}
+  }
+
+  provisioner "remote-exec" {
+	inline = [
+		"chmod +x sudo apt-get -y install curl"
+	]
 
 	connection {
 		type        = "ssh"
@@ -145,7 +158,7 @@ resource "vsphere_virtual_machine" "vm" {
 		password    = "${var.ubuntu_password}"
 	}
   }
-*/
+
 /*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
@@ -172,7 +185,7 @@ resource "vsphere_virtual_machine" "vm" {
 		}
 	}
 */
-
+/*
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
 		command = "chmod +x *.sh"
@@ -187,6 +200,7 @@ resource "vsphere_virtual_machine" "vm" {
 		working_dir = "${var.local_scripts_location}"
 		command = "./create_cda_environment.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.depltarget_prefix}${random_string.cda_entity_name.result}\" \"${var.cda_folder}\" \"${var.environment_prefix}${random_string.cda_entity_name.result}\""
 	}
+*/
 /*
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
