@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CDA_HOST=$1
 CDA_USER=$2
