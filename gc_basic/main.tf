@@ -2,9 +2,11 @@ variable "project" {default = "esd-general-dev"}
 
 variable "credentials" {}
 
+variable "infrastructure_name" {}
+
 variable "num_nodes" {
   description = "Number of nodes to create"
-  default     = 2
+  default     = 1
 }
 
 locals {
@@ -26,7 +28,7 @@ resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
   zone         = "us-west1-b"
-  name         = "jeny-em-test-${count.index + 1}-${local.id}"
+  name         = "${var.infrastructure_name}-${count.index + 1}-${local.id}"
   machine_type = "f1-micro"
   
   boot_disk {
