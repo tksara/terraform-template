@@ -4,7 +4,7 @@ variable "credentials" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
-  default     = 2
+  default     = 1
 }
 
 variable "local_scripts_location" {
@@ -53,11 +53,11 @@ resource "google_compute_instance" "default" {
 
 output "name" {
 	description = "Instance name"
-	value       = "${google_compute_instance.default.*.name}"
+	value       = "${google_compute_instance.default.*.name[0]}"
 }
 
 output "project" {
 	description = "Project"
-	value       = "${google_compute_instance.default.*.project}"
+	value       = "${google_compute_instance.default.*.project[0]}"
 }
 
