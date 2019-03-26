@@ -11,4 +11,4 @@ BODY=$(cat << EOF
 EOF
 )
 
-curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H 'Content-Type: application/json' -d "$BODY"
+curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H 'Content-Type: application/json' -H 'Postman-Token: eef0f3ee-707c-407c-8118-d6a1d8b6ea15' -H 'cache-control: no-cache'  -d "$BODY"
