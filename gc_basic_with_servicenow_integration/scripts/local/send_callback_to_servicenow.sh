@@ -6,7 +6,7 @@ PROJECT=$2
 BODY=$(cat << EOF
 {
 	"instance_name": "$INSTANCE_NAME",
-	"gc_project: "$PROJECT"
+	"gc_project": "$PROJECT"
 }
 EOF
 )
