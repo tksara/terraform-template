@@ -43,12 +43,11 @@ resource "google_compute_instance" "default" {
     subnetwork = "test-network-sub"
     subnetwork_project ="esd-general-dev"
   }
-/*	
+	
   provisioner "local-exec" {
     working_dir = "${var.local_scripts_location}"
     command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.name[0]}\" \"${google_compute_instance.default.*.project[0]}\""
   }	
-	*/
 }
 
 output "name" {
