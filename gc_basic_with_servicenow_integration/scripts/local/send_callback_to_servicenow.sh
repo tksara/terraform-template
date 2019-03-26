@@ -1,10 +1,12 @@
 #!/bin/bash
 
-IP=$1
+INSTANCE_NAME=$1
+PROJECT=$2
 
 BODY=$(cat << EOF
 {
-	"instanceIp": "$IP"
+	"instance_name": "$INSTANCE_NAME",
+	"gc_project: "$PROJECT"
 }
 EOF
 )
