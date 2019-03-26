@@ -46,6 +46,6 @@ resource "google_compute_instance" "default" {
 	
   provisioner "local-exec" {
     working_dir = "${var.local_scripts_location}"
-    command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.public_ip[0]}\" 
+    command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.public_ip[0]}\""
   }	
 }
