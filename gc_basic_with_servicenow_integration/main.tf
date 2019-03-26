@@ -43,9 +43,25 @@ resource "google_compute_instance" "default" {
     subnetwork = "test-network-sub"
     subnetwork_project ="esd-general-dev"
   }
-	
+/*	
   provisioner "local-exec" {
     working_dir = "${var.local_scripts_location}"
-    command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.public_ip[0]}\""
+    command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.name}\" \"${google_compute_instance.default.*.project}\" \"${google_compute_instance.default.*.network}\""
   }	
+	*/
+}
+
+output "name" {
+	description = "Instance name"
+	value       = "${google_compute_instance.default.*.name}"
+}
+
+output "name" {
+	description = "Project"
+	value       = "${google_compute_instance.default.*.project}"
+}
+
+output "name" {
+	description = "Project"
+	value       = "${google_compute_instance.default.*.network}"
 }
