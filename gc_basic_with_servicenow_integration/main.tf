@@ -48,7 +48,8 @@ resource "google_compute_instance" "default" {
 resource "null_resource" "test" {
     provisioner "local-exec" {
       working_dir = "${var.local_scripts_location}"
-      command = "./send_callback_to_servicenow.sh \"${google_compute_instance.default.*.name[0]}\" \"${google_compute_instance.default.*.project[0]}\""
+      command = "curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H 'Content-Type: application/json' \"${google_compute_instance.default.*.name[0]}\" \"${google_compute_instance.default.*.project[0]}\""
+     interpreter = ["cmd"]    
     }
 }	
 
