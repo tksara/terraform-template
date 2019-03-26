@@ -7,6 +7,10 @@ variable "num_nodes" {
   default     = 2
 }
 
+variable "local_scripts_location" {
+	default = "./scripts/local"
+}
+
 locals {
 	id = "${random_integer.name_extension.result}"
 }
@@ -39,4 +43,9 @@ resource "google_compute_instance" "default" {
     subnetwork = "test-network-sub"
     subnetwork_project ="esd-general-dev"
   }
+	
+  provisioner "local-exec" {
+    working_dir = "${var.local_scripts_location}"
+    command = "./create_cda_dpltarget.sh \"${var.cda_host}\" \"${var.cda_user}\" \"${var.cda_pass}\" \"${var.agent_name_prefix}${random_string.cda_entity_name.result}\" \"${var.depltarget_prefix}${random_string.cda_entity_name.result}\" \"${vsphere_virtual_machine.vm.default_ip_address}\" \"${var.tomcat_home_dir}\" \"${var.tomcat_user}\" \"${var.tomcat_pass}\" \"${var.cda_folder}\""
+  }	
 }
