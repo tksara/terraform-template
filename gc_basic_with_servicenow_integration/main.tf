@@ -56,12 +56,12 @@ output "name" {
 	value       = "${google_compute_instance.default.*.name}"
 }
 
-output "name" {
+output "project" {
 	description = "Project"
 	value       = "${google_compute_instance.default.*.project}"
 }
 
-output "name" {
-	description = "Project"
+output "network" {
+	description = "network"
 	value       = "${google_compute_instance.default.*.network}"
 }
