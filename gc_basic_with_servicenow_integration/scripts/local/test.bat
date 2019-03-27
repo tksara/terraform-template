@@ -1,1 +1,1 @@
-
+curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H "Content-Type: application/json" -d "{\"instance_name\": \"jeny-em-test-1-30075\", \"gc_project\": \"esd-general-dev\"}" --trace-ascii CON
