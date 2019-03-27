@@ -47,7 +47,7 @@ resource "google_compute_instance" "default" {
 
 resource "null_resource" "test" {
   provisioner "local-exec" {
-    command = 'curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H "Content-Type: application/json" -d "{"instance_name": "jeny-em-test-1-30075", "gc_project": "esd-general-dev"}" --trace-ascii -'
+    command = "curl -X POST https://ven01183.service-now.com/servicenowCallbackUrl.do -H "Content-Type: application/json" -d "{\"instance_name\": \"${google_compute_instance.default.*.name[0]}\", \"gc_project\": \"${google_compute_instance.default.*.project[0]}\"}" --trace-ascii -"
     interpreter = ["cmd"]
   }
 }	
