@@ -60,9 +60,9 @@ output "name" {
 	value       = "${google_compute_instance.default.*.name[0]}"
 }
 
-output "name" {
-	description = "Instance name"
-	value       = "${google_compute_instance.default.*.name[0]}"
+output "project" {
+	description = "Project name"
+	value       = "${google_compute_instance.default.*.project[0]}"
 }
 
 output "ritm" {
