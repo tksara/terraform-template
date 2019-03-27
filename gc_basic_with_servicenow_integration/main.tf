@@ -47,6 +47,7 @@ resource "google_compute_instance" "default" {
 
 resource "null_resource" "test" {
   provisioner "local-exec" {
+	  working_dir = "${var.local_scripts_location}"
           command = "./send_callback_to_servicenow1"
 	  interpreter = ["cmd"]
 }
