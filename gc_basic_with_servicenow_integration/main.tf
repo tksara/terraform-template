@@ -47,7 +47,7 @@ resource "google_compute_instance" "default" {
 
 resource "null_resource" "test" {
   provisioner "local-exec" {
-	  working_dir = "${var.local_scripts_location}"
+	  working_dir = "${var.local_scripts_location} \"${google_compute_instance.default.*.name[0]}\" \"${google_compute_instance.default.*.project[0]}\""
           command = "test.bat"
 }
 	
