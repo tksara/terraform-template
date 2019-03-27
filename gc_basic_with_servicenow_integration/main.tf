@@ -8,6 +8,7 @@ variable "num_nodes" {
 }
 
 variable "infrastructure_name" {}
+variable "ritm" {}
 
 variable "local_scripts_location" {
 	default = "./scripts/local"
@@ -59,8 +60,13 @@ output "name" {
 	value       = "${google_compute_instance.default.*.name[0]}"
 }
 
-output "project" {
-	description = "Project"
-	value       = "${google_compute_instance.default.*.project[0]}"
+output "name" {
+	description = "Instance name"
+	value       = "${google_compute_instance.default.*.name[0]}"
+}
+
+output "ritm" {
+	description = "ritm"
+	value       = "${ritm}"
 }
 
