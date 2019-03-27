@@ -67,6 +67,6 @@ output "project" {
 
 output "ritm" {
 	description = "ritm"
-	value       = "${ritm}"
+	value       = "${var.ritm}"
 }
 
