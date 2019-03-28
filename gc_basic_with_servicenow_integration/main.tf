@@ -8,7 +8,7 @@ variable "num_nodes" {
 }
 
 variable "infrastructure_name" {}
-variable "ritm" {}
+variable "ritm" {default = "Request Id was not passed for this execution."}
 
 variable "local_scripts_location" {
 	default = "./scripts/local"
