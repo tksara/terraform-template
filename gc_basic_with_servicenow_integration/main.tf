@@ -7,7 +7,7 @@ variable "num_nodes" {
   default     = 1
 }
 
-variable "infrastructure_name" {default = "jeny_test_infrastructure"}
+variable "infrastructure_name" {default = "jeny-test-infrastructure"}
 variable "ritm" {default = "Request Id was not passed for this execution."}
 
 variable "local_scripts_location" {
