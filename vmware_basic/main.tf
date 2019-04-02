@@ -81,15 +81,15 @@ output "vmware_instance_name" {
 
 output "vmware_instance_disk" {
   description = "disk"
-  value       = "${vsphere_virtual_machine.vm.*.disk}"
+  value       = "${vsphere_virtual_machine.vm.*.disk[0]}"
 }
 
 output "vmware_instance_cpus" {
   description = "cpus"
-  value       = "${vsphere_virtual_machine.vm.*.num_cpus}"
+  value       = "${vsphere_virtual_machine.vm.*.num_cpus[0]}"
 }
 
 output "vmware_instance_memory" {
   description = "memory"
-  value       = "${vsphere_virtual_machine.vm.*.memory}"
+  value       = "${vsphere_virtual_machine.vm.*.memory[0]}"
 }
