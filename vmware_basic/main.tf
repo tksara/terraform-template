@@ -68,3 +68,8 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
   }
 }
+
+output "vmware_instance_ip" {
+  description = "ip"
+  value       = "${vsphere_virtual_machine.vm.*.default_ip_address[0]}"
+}
