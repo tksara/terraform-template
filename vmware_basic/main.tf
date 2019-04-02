@@ -73,3 +73,23 @@ output "vmware_instance_ip" {
   description = "ip"
   value       = "${vsphere_virtual_machine.vm.*.default_ip_address[0]}"
 }
+
+output "vmware_instance_name" {
+  description = "name"
+  value       = "${vsphere_virtual_machine.vm.*.name[0]}"
+}
+
+output "vmware_instance_disk" {
+  description = "disk"
+  value       = "${vsphere_virtual_machine.vm.*.disk}"
+}
+
+output "vmware_instance_cpus" {
+  description = "cpus"
+  value       = "${vsphere_virtual_machine.vm.*.num_cpus}"
+}
+
+output "vmware_instance_memory" {
+  description = "memory"
+  value       = "${vsphere_virtual_machine.vm.*.memory}"
+}
