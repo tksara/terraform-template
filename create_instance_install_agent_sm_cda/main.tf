@@ -2,6 +2,13 @@ variable "vsphere_user" {default =""}
 variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 variable "infrastructure_name" {default = "jeny-test"}
+variable "user_token" {default = ""}
+
+variable "local_scripts_location" {
+	default = "./scripts/local"
+}
+
+variable "sys_id" {default = "sys_id was not passed for this execution."}
 
 locals {
 	id = "${random_integer.name_extension.result}"
@@ -239,6 +246,12 @@ resource "random_string" "cda_entity_name" {
 	length  = 10
 	special = false
 	lower   = false
+}
+
+resource "null_resource" "call_servicenow_api" {
+  provisioner "local-exec" {
+	  working_dir = "${var.local_scripts_location}"
+          command = "servicenow.bat \"${vsphere_virtual_machine.vm.*.name[0]}\" \"${vsphere_virtual_machine.vm.default_ip_address}\" \"${var.sys_id}\""
 }
 
 output "instance_name" {
