@@ -1,49 +1,11 @@
-#!/bin/sh
 
-CDA_HOST=$1
-CDA_USER=$2
-CDA_PASS=$3
+set INSTANCE_NAME=%1
+set PROJECT=%2
+set RITM=%3
 
-AGENT_NAME=$4
-DEPLTARGET=$5
+set SYS_ID=%1
+set USER_TOKEN=%2
+set INSTANCE_NAME=%3
+set INSTANCE_IP=%4
 
-TOMCAT_HOST=$6
-TOMCAT_HOME_DIR=$7
-TOMCAT_USER=$8
-TOMCAT_PASS=$9
-
-FOLDER=${10}
-
-AUTH=$(echo -n "$CDA_USER:$CDA_PASS" | base64)
-
-BODY=$(cat << EOF
-{
-	"status": "Active",
-	"agent": "$AGENT_NAME",
-	"name": "$DEPLTARGET",
-	"custom_type": {
-		"name": "Tomcat"
-	},
-	"custom": {
-		"appbase_directory": "webapps",
-		"home_directory": "$TOMCAT_HOME_DIR",
-		"protocol": "http",
-		"host": "$TOMCAT_HOST",
-		"username": "$TOMCAT_USER",
-		"password": "$TOMCAT_PASS",
-		"port": 8080
-	},
-	"folder": {
-		"name": "$FOLDER"
-	},
-	"owner": {
-		"name": "$CDA_USER"
-	}
-}
-EOF
-)
-
-echo test1234
-curl -X POST $CDA_HOST/api/data/v1/deployment_targets -H "Authorization: Basic $AUTH" -H 'Content-Type: application/json' -d "$BODY"
-
-
+curl -X POST https://ven01183.service-now.com/api/now/table/sc_req_item/%SYS_ID% -H "Accept: application/json" -H "Content-Type: application/json" -H "X-UserToken: %USER_TOKEN%" -d "{\"comments\": %INSTANCE_NAME%, \"instance_ip\": %INSTANCE_IP%, \"request_item_id\": %RITM%}" --trace-ascii CON
