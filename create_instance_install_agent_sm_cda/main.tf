@@ -3,10 +3,6 @@ variable "vsphere_password" {default =""}
 variable "vsphere_server" {default = "vvievc01.sbb01.spoc.global"}
 variable "infrastructure_name" {default = "jeny-test"}
 
-variable "local_scripts_location" {
-	default = "./scripts/local"
-}
-
 locals {
 	id = "${random_integer.name_extension.result}"
 }
