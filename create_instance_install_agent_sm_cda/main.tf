@@ -267,3 +267,13 @@ output "profile" {
 	value = "${var.profile_prefix}${random_string.cda_entity_name.result}"
 }
 */
+	
+output "vmware_instance_ip" {
+  description = "ip"
+  value       = "${vsphere_virtual_machine.vm.*.default_ip_address[0]}"
+}
+
+output "vmware_instance_name" {
+  description = "name"
+  value       = "${vsphere_virtual_machine.vm.*.name[0]}"
+}
