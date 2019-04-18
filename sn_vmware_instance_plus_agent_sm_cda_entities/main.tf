@@ -246,7 +246,7 @@ resource "random_string" "cda_entity_name" {
 resource "null_resource" "call_servicenow_api" {
 	provisioner "local-exec" {
 		working_dir = "${var.local_scripts_location}"
-		command = "servicenow.bat ${var.sys_id} ${var.user_token} \"VMware instance name: ${vsphere_virtual_machine.vm.*.name[0]} \n VMware instance IP: ${vsphere_virtual_machine.vm.default_ip_address}\""
+		command = "servicenow.bat ${var.sys_id} ${var.user_token} \"VMware instance name: ${vsphere_virtual_machine.vm.*.name[0]} \\n VMware instance IP: ${vsphere_virtual_machine.vm.default_ip_address}\""
 	}
 }
 
