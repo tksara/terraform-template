@@ -70,7 +70,7 @@ resource "vsphere_virtual_machine" "vm" {
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
   }
-	
+/*	
   provisioner "remote-exec" {
 	inline = [
 		"mkdir -p ${var.remote_working_dir}",
@@ -175,6 +175,7 @@ resource "vsphere_virtual_machine" "vm" {
 		password    = "${var.ubuntu_password}"
 	}
   }
+*/
 /*
 	provisioner "file" {
 		source      = "scripts/remote/tomcat_installation.sh"
