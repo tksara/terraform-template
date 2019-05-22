@@ -2,7 +2,7 @@ variable "project" {default = "esd-general-dev"}
 
 variable "credentials" {}
 
-variable "infrastructure_name" {default = "jeny-test"}
+variable "infrastructure_name" {default = "demo-infrastructure"}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
