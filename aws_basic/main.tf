@@ -13,5 +13,5 @@ resource "aws_instance" "cda_instance" {
   ami                    = "${var.aws_ami}"
   instance_type          = "t2.micro"
   vpc_security_group_ids = ["${var.aws_security_group_id}"]
-  key_name	= "jeny-key-us-east-1"
+  //key_name	= "jeny-key-us-east-1"
 }
