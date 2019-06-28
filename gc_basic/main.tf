@@ -1,7 +1,8 @@
 variable "project" {default = "esd-general-dev"}
-
+variable "region" {default = "us-west1"}
+variable "subnetwork" {default = "test-network-sub"}
+variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "credentials" {}
-
 variable "infrastructure_name" {default = "demo-infrastructure"}
 
 variable "num_nodes" {
@@ -21,7 +22,7 @@ resource "random_integer" "name_extension" {
 provider "google" {
   credentials = "${var.credentials}"
   project     = "${var.project}"
-  region      = "us-west1"
+  region      = "${var.region}"
 }
 
 resource "google_compute_instance" "default" {
@@ -33,12 +34,12 @@ resource "google_compute_instance" "default" {
   
   boot_disk {
     initialize_params {
-      image = "ubuntu-1604-xenial-v20190212"
+      image = "${var.ubuntu-1604-xenial-v20190212}"
     }
   }
   
   network_interface {
-    subnetwork = "test-network-sub"
-    subnetwork_project ="esd-general-dev"
+    subnetwork = "${var.subnetwork}"
+    subnetwork_project = "${var.project}"
   }
 }
