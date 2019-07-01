@@ -34,7 +34,7 @@ resource "google_compute_instance" "default" {
   
   boot_disk {
     initialize_params {
-      image = "${var.ubuntu-1604-xenial-v20190212}"
+      image = "${var.image}"
     }
   }
   
