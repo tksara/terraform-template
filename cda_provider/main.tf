@@ -1,5 +1,5 @@
-variable "cda_server" {default = ""}
-variable "cda_user" {default = ""}
+variable "cda_server" {default = "http://10.55.11.196/cda"}
+variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
 
 provider "cda" {
