@@ -16,8 +16,8 @@ resource "cda_environment" "firstEnvironment" {
   owner              = "100/AUTOMIC/AUTOMIC"
   
   dynamic = {
-      "name1" = "value1"
-      "name2" = "value2"}
+      "/name1" = "value1"
+      "/name2" = "value2"}
   custom = {}
   deployment_targets = []
 
