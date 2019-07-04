@@ -3,7 +3,7 @@ variable "region" {default = "us-west1"}
 variable "subnetwork" {default = "test-network-sub"}
 variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "credentials" {}
-variable "infrastructure_name" {default = "demo-infrastructure"}
+variable "infrastructure_name" {default = "demo-infrastructurex"}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
