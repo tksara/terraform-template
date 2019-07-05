@@ -30,7 +30,7 @@ resource "google_compute_instance" "default" {
   project      = "${var.project}"
   zone         = "us-west1-b"
   name         = "${var.infrastructure_name}-${count.index + 1}-${local.id}"
-  machine_type = "f1-micro"
+  machine_type = "g1-small"
   
   boot_disk {
     initialize_params {
