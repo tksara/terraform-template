@@ -9,7 +9,7 @@ provider "cda" {
 }
  
 resource "cda_environment" "firstEnvironment" {
-  name               = "jeny_test_4"
+  name               = "jeny_test_41"
   folder             = "DEFAULT"
   custom_type        = "Generic"
   description        = "Description Update"
