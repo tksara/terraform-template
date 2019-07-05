@@ -20,7 +20,7 @@ resource "cda_environment" "firstEnvironment" {
       "name2" = "value2"
   }
   
-  custom_propertie = {}
+  custom_properties = {}
   
   deployment_targets = []
 }
