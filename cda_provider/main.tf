@@ -11,7 +11,7 @@ provider "cda" {
 resource "cda_environment" "firstEnvironment" {
   name               = "jeny_test_41"
   folder             = "DEFAULT"
-  custom_type        = "Generic"
+  custom_type        = "Production"
   description        = "Description Update"
   owner              = "100/AUTOMIC/AUTOMIC"
   
