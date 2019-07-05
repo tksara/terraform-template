@@ -9,16 +9,18 @@ provider "cda" {
 }
  
 resource "cda_environment" "firstEnvironment" {
-  name               = "jeny_test_3"
+  name               = "jeny_test_4"
   folder             = "DEFAULT"
   custom_type        = "Generic"
   description        = "Description Update"
   owner              = "100/AUTOMIC/AUTOMIC"
   
-  dynamic = {
-      "/name1" = "value1"
-      "/name2" = "value2"}
-  custom = {}
+  dynamic_properties = {
+      "name1" = "value1"
+      "name2" = "value2"
+  }
+  
+  custom_propertie = {}
+  
   deployment_targets = []
-
 }
