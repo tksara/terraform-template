@@ -9,7 +9,7 @@ provider "cda" {
 }
  
 resource "cda_environment" "firstEnvironment" {
-  name               = "jeny1"
+  name               = "jeny2"
   folder             = "DEFAULT"
   type               = "Production"
   description        = "Description Update"
@@ -22,5 +22,5 @@ resource "cda_environment" "firstEnvironment" {
   
   custom_properties = {}
   
-  deployment_targets = []
+  deployment_targets = ["Local SQLLite DB", "Local Tomcat"]
 }
