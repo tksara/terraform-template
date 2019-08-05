@@ -2,7 +2,7 @@ variable "project" {default = "esd-general-dev"}
 variable "region" {default = "us-west1"}
 variable "subnetwork" {default = "test-network-sub"}
 variable "image" {default = "ubuntu-1604-xenial-v20190212"}
-//variable "credentials" {}
+variable "credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructurex"}
 
 variable "num_nodes" {
