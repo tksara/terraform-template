@@ -77,7 +77,7 @@ output "public_dns" {
 	description = "List of public DNS names assigned to the instances. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC"
 	value       = "${aws_instance.cda_instance.*.public_dns[0]}"
 }
-
+/*
 output "network_interface_id" {
 	description = "List of IDs of the network interface of instances"
 	value       = "${aws_instance.cda_instance.*.network_interface_id[0]}"
@@ -112,3 +112,4 @@ output "subnet_id" {
 	description = "List of IDs of VPC subnets of instances"
 	value       = "${aws_instance.cda_instance.*.subnet_id[0]}"
 }
+*/
