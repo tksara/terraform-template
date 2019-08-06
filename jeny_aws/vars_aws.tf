@@ -18,7 +18,7 @@ variable "aws_ami" {
 }
 
 variable "aws_security_group_id" {
-	default = "alabala"
+	default = "sg-495c840a"
 }
 
 variable "email" {
