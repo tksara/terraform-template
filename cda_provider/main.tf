@@ -31,5 +31,5 @@ resource "cda_environment" "firstEnvironment" {
   
   custom_properties = {}
   
-  deployment_targets = ["Local SQLLite DB", "Local Tomcat"]
+  deployment_targets = "Local SQLLite DB", "Local Tomcat"
 }
