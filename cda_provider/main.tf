@@ -2,6 +2,15 @@ variable "cda_server" {default = "http://10.55.11.196/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
 
+locals {
+	id = "${random_integer.name_extension.result}"
+}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
+
 provider "cda" {
   cda_server     = "${var.cda_server}"
   user           = "${var.cda_user}"
@@ -9,7 +18,7 @@ provider "cda" {
 }
  
 resource "cda_environment" "firstEnvironment" {
-  name               = "jeny2"
+  name               = "jeny-${local.id}"
   folder             = "DEFAULT"
   type               = "Generic"
   description        = "Description Update"
