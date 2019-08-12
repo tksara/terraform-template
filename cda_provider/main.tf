@@ -1,4 +1,4 @@
-variable "cda_server" {default = "http://STOZH01L7480:80/CDA"}
+variable "cda_server" {default = "http://STOZH01L7480:80/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
 
