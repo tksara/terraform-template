@@ -38,7 +38,7 @@ resource "cda_environment" "firstEnvironment" {
 
 resource "cda_deployment_target" "jenys_target" {
   name        = "jeny-${local.id}"
-  type        = "Tomcat"
+  type        = "Database JDBC"
   folder      = "DEFAULT"
   owner       = "100/AUTOMIC/AUTOMIC"
   agent       = "WIN01"
