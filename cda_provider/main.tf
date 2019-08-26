@@ -42,11 +42,46 @@ resource "cda_deployment_target" "jenys_target" {
   folder      = "DEFAULT"
   owner       = "100/AUTOMIC/AUTOMIC"
   //agent       = "WIN01"
+}
 
-  dynamic_properties = {
-    prop1 = "value1"
-    prop2 = "value2"
-    prop3 = "value3"
-    prop4 = "value4"
-  }
+resource "cda_login_object" "my_login_object" {
+  name        = "test_login_object"
+  folder      = "DEFAULT"
+  owner       = "100/AUTOMIC/AUTOMIC"
+
+  credentials = [
+    {
+      agent      = "*"
+      type       = "WINDOWS"
+      username   = "Agent_User"
+      password   = "automic"
+    }
+  ]
+}
+
+resource "cda_deployment_profile" "my_deployment_profile" {
+  name         = "test_profile"
+  folder       = "DEFAULT"
+  owner        = "100/AUTOMIC/AUTOMIC"
+  application  = "application"
+  environment  = "${cda_environment.firstEnvironment.name}"
+  login_object = "cda_login_object.my_login_object.name"
+
+/*
+  deployment_map = [
+    {
+      component = "component_2"
+      targets = ["target_name1", ..., "target_nameN"]
+    },
+    {
+      component = "component_2"
+      targets = ["target_name1", ..., "target_nameN"]
+    }
+  ]
+*/
+// deployment_map = {
+//    component1 = "target_name1, ..., target_nameN"
+//    component2 = "target_name11, ..., target_nameN1"
+//    component3 = "target_name111, ..., target_nameN11"
+//  }
 }
