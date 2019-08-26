@@ -80,7 +80,7 @@ resource "cda_deployment_profile" "my_deployment_profile" {
   ]
 */
   deployment_map = {
-    "${cda_environment.firstEnvironment.name}" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
+    "Component A" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
     "Component B" = "Local Tomcat"
   }
 }
