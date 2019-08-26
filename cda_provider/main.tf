@@ -35,3 +35,18 @@ resource "cda_environment" "firstEnvironment" {
   
   deployment_targets = ["Local SQLLite DB", "Local Tomcat"]
 }
+
+resource "cda_deployment_target" "jenys_target" {
+  name        = "jeny-${local.id}"
+  type        = "Tomcat"
+  folder      = "DEFAULT"
+  owner       = "100/AUTOMIC/AUTOMIC"
+  agent       = "WIN01"
+
+  dynamic_properties = {
+    prop1 = "value1"
+    prop2 = "value2"
+    prop3 = "value3"
+    prop4 = "value4"
+  }
+}
