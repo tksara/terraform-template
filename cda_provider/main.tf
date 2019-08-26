@@ -41,7 +41,7 @@ resource "cda_deployment_target" "jenys_target" {
   type        = "Database JDBC"
   folder      = "DEFAULT"
   owner       = "100/AUTOMIC/AUTOMIC"
-  agent       = "WIN01"
+  //agent       = "WIN01"
 
   dynamic_properties = {
     prop1 = "value1"
