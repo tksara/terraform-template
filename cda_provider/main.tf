@@ -45,7 +45,7 @@ resource "cda_deployment_target" "jenys_target" {
 }
 
 resource "cda_login_object" "my_login_object" {
-  name        = "test_login_object"
+  name        = "test_login_object-${local.id}"
   folder      = "DEFAULT"
   owner       = "100/AUTOMIC/AUTOMIC"
 
@@ -60,7 +60,7 @@ resource "cda_login_object" "my_login_object" {
 }
 
 resource "cda_deployment_profile" "my_deployment_profile" {
-  name         = "test_profile"
+  name         = "test_profile-${local.id}"
   folder       = "DEFAULT"
   owner        = "100/AUTOMIC/AUTOMIC"
   application  = "IM Test App"
