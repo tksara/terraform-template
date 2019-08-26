@@ -79,9 +79,8 @@ resource "cda_deployment_profile" "my_deployment_profile" {
     }
   ]
 */
-// deployment_map = {
-//    component1 = "target_name1, ..., target_nameN"
-//    component2 = "target_name11, ..., target_nameN1"
-//    component3 = "target_name111, ..., target_nameN11"
-//  }
+  deployment_map = {
+    Component A = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
+    Component B = "Local Tomcat"
+  }
 }
