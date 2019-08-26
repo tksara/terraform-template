@@ -63,9 +63,9 @@ resource "cda_deployment_profile" "my_deployment_profile" {
   name         = "test_profile"
   folder       = "DEFAULT"
   owner        = "100/AUTOMIC/AUTOMIC"
-  application  = "application"
+  application  = "IM Test App"
   environment  = "${cda_environment.firstEnvironment.name}"
-  login_object = "cda_login_object.my_login_object.name"
+  login_object = "${cda_login_object.my_login_object.name}"
 
 /*
   deployment_map = [
