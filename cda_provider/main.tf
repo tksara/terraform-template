@@ -67,18 +67,6 @@ resource "cda_deployment_profile" "my_deployment_profile" {
   environment  = "${cda_environment.firstEnvironment.name}"
   login_object = "${cda_login_object.my_login_object.name}"
 
-/*
-  deployment_map = [
-    {
-      component = "component_2"
-      targets = ["target_name1", ..., "target_nameN"]
-    },
-    {
-      component = "component_2"
-      targets = ["target_name1", ..., "target_nameN"]
-    }
-  ]
-*/
   deployment_map = {
     "Component A" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
     "Component B" = "Local Tomcat"
