@@ -3,6 +3,7 @@ variable "cda_server" {default = "http://STOZH01L7480/cda"}
 //variable "cda_server" {default = "http://STOZH01L7480:80/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
+variable "component_name" {default = "Component A"}
 
 locals {
 	id = "${random_integer.name_extension.result}"
@@ -68,7 +69,7 @@ resource "cda_deployment_profile" "my_deployment_profile" {
   login_object = "${cda_login_object.my_login_object.name}"
 
   deployment_map = {
-    "Component A" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
+    "${var.component_name}" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
     "Component B" = "Local Tomcat"
   }
 }
