@@ -34,7 +34,7 @@ resource "cda_environment" "firstEnvironment" {
   
   custom_properties = {}
   
-  deployment_targets = ["Local SQLLite DB", "Local Tomcat"]
+  deployment_targets = ["${cda_deployment_target.jenys_target.name}", "Local Tomcat"]
 }
 
 resource "cda_deployment_target" "jenys_target" {
