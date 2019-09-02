@@ -4,6 +4,8 @@ variable "subnetwork" {default = "test-network-sub"}
 variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructurex"}
+variable "jiraIssueId" {default = "no Jira Id"}
+variable "jiraPassword" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
@@ -42,4 +44,15 @@ resource "google_compute_instance" "default" {
     subnetwork = "${var.subnetwork}"
     subnetwork_project = "${var.project}"
   }
+}
+
+provider "jira" {
+  url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
+  user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
+  password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
+}
+
+resource "jira_comment" "example_comment" {
+  body = "TEEEEEEEEEST"
+  issue_key = "${var.jiraIssueId}"
 }
