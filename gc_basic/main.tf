@@ -58,7 +58,7 @@ output "project_output" {
 
 output "internal_ip_output" {
 	description = "Internal IP"
-	value       = "${google_compute_instance.default.*.network_interface.subnetwork}"
+	value       = "${google_compute_instance.default.*.network_interface.subnetwork[0]}"
 }
 
 
