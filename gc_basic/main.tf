@@ -3,7 +3,7 @@ variable "region" {default = "us-west1"}
 variable "subnetwork" {default = "test-network-sub"}
 variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "credentials" {}
-variable "infrastructure_name" {default = "demo-infrastructurex"}
+variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
 variable "jiraPassword" {}
 
@@ -46,7 +46,7 @@ resource "google_compute_instance" "default" {
   }
 }
 
-output "infrastructure_name" {
+output "name" {
 	description = "Instance name"
 	value       = "${google_compute_instance.default.*.name[0]}"
 }
@@ -54,6 +54,11 @@ output "infrastructure_name" {
 output "project" {
 	description = "Project name"
 	value       = "${google_compute_instance.default.*.project[0]}"
+}
+
+output "internal_ip" {
+	description = "Internal IP"
+	value       = "${google_compute_instance.network_interface.*.network_ip[0]}"
 }
 
 
@@ -64,6 +69,6 @@ provider "jira" {
 }
 
 resource "jira_comment" "example_comment" {
-  body = "TEEEEEEEEEST"
+  body = "Infrastructure Name: ${infrastructure_name.value}"
   issue_key = "${var.jiraIssueId}"
 }
