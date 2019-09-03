@@ -46,6 +46,17 @@ resource "google_compute_instance" "default" {
   }
 }
 
+output "infrastructure_name" {
+	description = "Instance name"
+	value       = "${google_compute_instance.default.*.name[0]}"
+}
+
+output "project" {
+	description = "Project name"
+	value       = "${google_compute_instance.default.*.project[0]}"
+}
+
+
 provider "jira" {
   //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
