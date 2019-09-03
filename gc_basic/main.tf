@@ -58,7 +58,7 @@ output "project_output" {
 
 output "internal_ip_output" {
 	description = "Internal IP"
-	value       = "${google_compute_instance.default.*.network_interface.network_ip[0]}"
+	value       = "${google_compute_instance.default.*.network_interface.0.network_ip}"
 }
 
 provider "jira" {
