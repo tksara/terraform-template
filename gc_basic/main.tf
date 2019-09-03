@@ -55,12 +55,12 @@ output "project_output" {
 	description = "Project name"
 	value       = "${google_compute_instance.default.*.project[0]}"
 }
-/*
+
 output "internal_ip_output" {
 	description = "Internal IP"
-	value       = "${google_compute_instance.default.*.network_interface.subnetwork[0]}"
+	value       = "${google_compute_instance.default.*.network_interface.0.network_ip}"
 }
-*/
+
 provider "jira" {
   //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
