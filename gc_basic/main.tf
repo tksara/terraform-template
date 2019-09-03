@@ -47,9 +47,9 @@ resource "google_compute_instance" "default" {
 }
 
 provider "jira" {
-  url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
-  user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
-  password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
+  //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
+  //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
+  //password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
 }
 
 resource "jira_comment" "example_comment" {
