@@ -46,19 +46,19 @@ resource "google_compute_instance" "default" {
   }
 }
 
-output "name" {
+output "name_output" {
 	description = "Instance name"
 	value       = "${google_compute_instance.default.*.name[0]}"
 }
 
-output "project" {
+output "project_output" {
 	description = "Project name"
 	value       = "${google_compute_instance.default.*.project[0]}"
 }
 
-output "internal_ip" {
+output "internal_ip_output" {
 	description = "Internal IP"
-	value       = "${google_compute_instance.network_interface.*.network_ip[0]}"
+	value       = "${google_compute_instance.default.*.network_interface.network_ip[0]}"
 }
 
 
@@ -69,6 +69,6 @@ provider "jira" {
 }
 
 resource "jira_comment" "example_comment" {
-  body = "Infrastructure Name: ${infrastructure_name.value}"
+  body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} /n Project name: ${google_compute_instance.default.*.project[0]}"
   issue_key = "${var.jiraIssueId}"
 }
