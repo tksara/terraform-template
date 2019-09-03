@@ -5,7 +5,6 @@ variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
-variable "jiraPassword" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
