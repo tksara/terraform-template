@@ -68,6 +68,6 @@ provider "jira" {
 }
 
 resource "jira_comment" "example_comment" {
-  body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.network_ip[0]}"
+  body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.0.network_ip}"
   issue_key = "${var.jiraIssueId}"
 }
