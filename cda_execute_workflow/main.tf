@@ -19,7 +19,7 @@ provider "cda" {
   user           = "${var.cda_user}"
   password       = "${var.cda_password}"  
 }
- 
+/* 
 resource "cda_environment" "firstEnvironment" {
   name               = "jeny-${local.id}"
   folder             = "DEFAULT"
@@ -73,13 +73,13 @@ resource "cda_deployment_profile" "my_deployment_profile" {
     "Component B" = "Local Tomcat"
   }
 }
-
+*/
 resource "cda_workflow_execution" "my_execution" {
   enable = "true"
-  application                  = "application" 
-  workflow                     = "workflow name" 
-  package                      = "package" 
-  deployment_profile           = "my_deployment_profile" 
+  application                  = "DemoApp" 
+  workflow                     = "deploy" 
+  package                      = "1" 
+  deployment_profile           = "Local" 
   //manual_approval              = "true" 
   //approver                     = "100/AUTOMIC/AUTOMIC"
   //schedule                     = "2019-12-28T13:44:00Z" //"cron(0 3 12 12 ? 2019)" //start_date = "2019-12-12" //start_time = "3:00"  
