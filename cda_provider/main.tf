@@ -21,7 +21,7 @@ provider "cda" {
   
   default_attributes = {
     folder = "DEFAULT"
-    owner  = "${var.cda_user}"
+   // owner  = "${var.cda_user}"
   }
 }
  
