@@ -18,14 +18,19 @@ provider "cda" {
   cda_server     = "${var.cda_server}"
   user           = "${var.cda_user}"
   password       = "${var.cda_password}"  
+  
+  default_attributes {
+    folder = "DEFAULT"
+    owner  = "${var.cda_user}"
+  }
 }
  
 resource "cda_environment" "firstEnvironment" {
   name               = "jeny-${local.id}"
-  folder             = "DEFAULT"
+  //folder             = "DEFAULT"
   type               = "Generic"
   description        = "Description Update"
-  owner              = "100/AUTOMIC/AUTOMIC"
+  //owner              = "100/AUTOMIC/AUTOMIC"
   
   dynamic_properties = {
       "name1" = "value1"
@@ -40,15 +45,15 @@ resource "cda_environment" "firstEnvironment" {
 resource "cda_deployment_target" "jenys_target" {
   name        = "jeny-${local.id}"
   type        = "Database JDBC"
-  folder      = "DEFAULT"
-  owner       = "100/AUTOMIC/AUTOMIC"
+  //folder      = "DEFAULT"
+  //owner       = "100/AUTOMIC/AUTOMIC"
   //agent       = "WIN01"
 }
 
 resource "cda_login_object" "my_login_object" {
   name        = "test_login_object-${local.id}"
-  folder      = "DEFAULT"
-  owner       = "100/AUTOMIC/AUTOMIC"
+  //folder      = "DEFAULT"
+  //owner       = "100/AUTOMIC/AUTOMIC"
 
   credentials = [
     {
@@ -62,8 +67,8 @@ resource "cda_login_object" "my_login_object" {
 
 resource "cda_deployment_profile" "my_deployment_profile" {
   name         = "test_profile-${local.id}"
-  folder       = "DEFAULT"
-  owner        = "100/AUTOMIC/AUTOMIC"
+  //folder       = "DEFAULT"
+  //owner        = "100/AUTOMIC/AUTOMIC"
   application  = "IM Test App"
   environment  = "${cda_environment.firstEnvironment.name}"
   login_object = "${cda_login_object.my_login_object.name}"
@@ -73,7 +78,7 @@ resource "cda_deployment_profile" "my_deployment_profile" {
     "Component B" = "Local Tomcat"
   }
 }
-
+/*
 resource "cda_workflow_execution" "my_execution" {
   enable = "true"
   application                  = "application" 
@@ -85,3 +90,4 @@ resource "cda_workflow_execution" "my_execution" {
   //schedule                     = "2019-12-28T13:44:00Z" //"cron(0 3 12 12 ? 2019)" //start_date = "2019-12-12" //start_time = "3:00"  
   override_existing_components = "false"
 }
+*/
