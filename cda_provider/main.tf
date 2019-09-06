@@ -19,7 +19,7 @@ provider "cda" {
   user           = "${var.cda_user}"
   password       = "${var.cda_password}"  
   
-  default_attributes {
+  default_attributes = {
     folder = "DEFAULT"
     owner  = "${var.cda_user}"
   }
