@@ -48,6 +48,7 @@ resource "cda_deployment_target" "jenys_target" {
   //folder      = "DEFAULT"
   folder        = "JENY"
   //owner       = "100/AUTOMIC/AUTOMIC"
+  owner       = "100/JENY/AUTOMIC"
   //agent       = "WIN01"
 }
 
