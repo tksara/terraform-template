@@ -83,7 +83,7 @@ resource "cda_workflow_execution" "my_execution" {
   //manual_approval              = "true" 
   //approver                     = "100/AUTOMIC/AUTOMIC"
   //schedule                     = "2019-12-28T13:44:00Z" //"cron(0 3 12 12 ? 2019)" //start_date = "2019-12-12" //start_time = "3:00"  
-  override_existing_components = "false"
+  override_existing_components = "true"
 }
 
 output "installtion_url" {
