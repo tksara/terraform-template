@@ -46,6 +46,7 @@ resource "cda_deployment_target" "jenys_target" {
   name        = "jeny-${local.id}"
   type        = "Database JDBC"
   //folder      = "DEFAULT"
+  folder        = "JENY"
   //owner       = "100/AUTOMIC/AUTOMIC"
   //agent       = "WIN01"
 }
