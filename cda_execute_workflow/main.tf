@@ -88,7 +88,7 @@ resource "cda_workflow_execution" "my_execution" {
    overrides_component = [
 	{
 	   component_name = "webapp"
-	   "tomcat/port" = "9060"
+	   "tomcat/test_property" = "kukurigu"
 	}
    ]	
 }
