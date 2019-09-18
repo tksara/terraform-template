@@ -4,7 +4,7 @@ variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
 variable "component_name" {default = "Component A"}
-
+/*
 locals {
 	id = "${random_integer.name_extension.result}"
 }
@@ -13,7 +13,7 @@ resource "random_integer" "name_extension" {
   min     = 1
   max     = 99999
 }
-
+*/
 provider "cda" {
   cda_server     = "${var.cda_server}"
   user           = "${var.cda_user}"
