@@ -75,7 +75,7 @@ resource "cda_deployment_profile" "my_deployment_profile" {
 }
 */
 resource "cda_workflow_execution" "my_execution" {
-  enable = "true"
+  triggers = false
   application                  = "DemoApp" 
   workflow                     = "deploy" 
   package                      = "1" 
@@ -83,7 +83,7 @@ resource "cda_workflow_execution" "my_execution" {
   //manual_approval              = "true" 
   //approver                     = "100/AUTOMIC/AUTOMIC"
   //schedule                     = "2019-12-28T13:44:00Z" //"cron(0 3 12 12 ? 2019)" //start_date = "2019-12-12" //start_time = "3:00"  
-  override_existing_components = "true"
+  //override_existing_components = "true"
 }
 
 output "installtion_url" {
