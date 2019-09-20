@@ -2,6 +2,16 @@ variable "client_secret" {}
 variable "subscription_id" {}
 variable "client_id" {}
 variable "tenant_id" {}
+variable "infrastructure_name" {default = "demo-infrastructure"}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
+
+locals {
+	id = "${random_integer.name_extension.result}"
+}
 
 provider "azurerm" {
 
@@ -122,7 +132,7 @@ resource "azurerm_storage_account" "mystorageaccount" {
 
 # Create virtual machine
 resource "azurerm_virtual_machine" "myterraformvm" {
-	name                  = "myVM"
+	name                  = "${var.infrastructure_name}-${local.id}"
 	location              = "eastus"
 	resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
 	network_interface_ids = ["${azurerm_network_interface.myterraformnic.id}"]
@@ -163,4 +173,15 @@ resource "azurerm_virtual_machine" "myterraformvm" {
 	tags {
 		environment = "Terraform Demo"
 	}*/
+}
+
+provider "jira" {
+  //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
+  //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
+  //password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
+}
+
+resource "jira_comment" "example_comment" {
+  body = "Infrastructure Name: ${azurerm_virtual_machine.myterraformvm.*.name[0]}"
+  issue_key = "${var.jiraIssueId}"
 }
