@@ -65,9 +65,8 @@ provider "jira" {
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
   //password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
 }
-/*
+
 resource "jira_comment" "example_comment" {
   body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.0.network_ip[0]}"
   issue_key = "${var.jiraIssueId}"
 }
-*/
