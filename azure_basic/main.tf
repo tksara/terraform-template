@@ -3,6 +3,7 @@ variable "subscription_id" {}
 variable "client_id" {}
 variable "tenant_id" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
+variable "jiraIssueId" {default = "no Jira Id"}
 
 resource "random_integer" "name_extension" {
   min     = 1
