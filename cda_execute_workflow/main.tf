@@ -75,7 +75,7 @@ resource "cda_deployment_profile" "my_deployment_profile" {
 }
 */
 resource "cda_workflow_execution" "my_execution" {
-  triggers = true
+  triggers = false
   application                  = "DemoApp" 
   workflow                     = "deploy" 
   package                      = "1" 
