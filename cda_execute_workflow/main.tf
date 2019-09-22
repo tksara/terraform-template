@@ -88,7 +88,7 @@ resource "cda_workflow_execution" "my_execution" {
    overrides_component = [
 	{
 	   component_name = "webapp"
-	   "tomcat/test_property" = "kukurigu"
+	   "tomcat/test_property" = "kukurigu1"
 	}
    ]	
 }
