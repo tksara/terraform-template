@@ -1,7 +1,7 @@
-variable "client_secret" {}
-variable "subscription_id" {}
-variable "client_id" {}
-variable "tenant_id" {}
+variable "azure_client_secret" {}
+variable "azure_subscription_id" {}
+variable "azure_client_id" {}
+variable "azure_tenant_id" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
 
@@ -17,10 +17,10 @@ locals {
 provider "azurerm" {
 
 	//version = "=1.20.0"
-	subscription_id = "${var.subscription_id}"
-	client_id       = "${var.client_id}"
-	client_secret   = "${var.client_secret}"
-	tenant_id       = "${var.tenant_id}"
+	subscription_id = "${var.azure_subscription_id}"
+	client_id       = "${var.azure_client_id}"
+	client_secret   = "${var.azure_client_secret}"
+	tenant_id       = "${var.azure_tenant_id}"
 }
 
 # Create a resource group if it doesn’t exist
