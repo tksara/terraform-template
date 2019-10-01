@@ -2,7 +2,7 @@ variable "project" {default = "esd-general-dev"}
 variable "region" {default = "us-west1"}
 variable "subnetwork" {default = "test-network-sub"}
 variable "image" {default = "ubuntu-1604-xenial-v20190212"}
-variable "credentials" {}
+variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
 
@@ -21,7 +21,7 @@ resource "random_integer" "name_extension" {
 }
 
 provider "google" {
-  credentials = "${var.credentials}"
+  credentials = "${var.gc_credentials}"
   project     = "${var.project}"
   region      = "${var.region}"
 }
