@@ -60,6 +60,7 @@ output "internal_ip_output" {
 	value       = "${google_compute_instance.default.*.network_interface.0.network_ip}"
 }
 
+/*
 provider "jira" {
   //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
@@ -70,3 +71,4 @@ resource "jira_comment" "example_comment" {
   body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.0.network_ip[0]}"
   issue_key = "${var.jiraIssueId}"
 }
+*/
