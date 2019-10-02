@@ -16,8 +16,8 @@ resource "random_integer" "name_extension" {
 
 provider "cda" {
   cda_server     = "${var.cda_server}"
-  user           = "${var.cda_user}"
-  password       = "${var.cda_password}"  
+ // user           = "${var.cda_user}"
+ // password       = "${var.cda_password}"  
   
   default_attributes = {
     folder = "DEFAULT"
