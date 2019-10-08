@@ -17,10 +17,42 @@ resource "aws_instance" "cda_instance" {
   ami                    = "${var.aws_ami}"
   instance_type          = "${var.instance_type}"
   vpc_security_group_ids = ["${var.aws_security_group_id}"]
+  key_name	         = "jeny-key-us-east-1"
 	
   tags = {
     Name = "pet-shop-prod"
   }
+	
+  user_data = <<HEREDOC
+		#!/bin/bash -v
+                sudo yum update -y
+                sudo yum install -y tomcat7-webapps tomcat7-docs-webapp tomcat7-admin-webapps
+                sudo service tomcat7 start 
+  HEREDOC
+  /*
+  provisioner "file" {
+   	source      = "scripts/remote/tomcat_installation.sh"
+	destination = "${var.remote_working_dir}/scripts/tomcat_installation.sh"
+
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+  }
+
+  provisioner "remote-exec" {
+	inline = [
+		"chmod +x ${var.remote_working_dir}/scripts/tomcat_installation.sh",
+		"${var.remote_working_dir}/scripts/tomcat_installation.sh ${var.tomcat_user} ${var.tomcat_pass}"
+	]
+
+	connection {
+		type        = "ssh"
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+  }*/	
 }
 
 provider "cda" {
