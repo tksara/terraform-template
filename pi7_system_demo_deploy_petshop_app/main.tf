@@ -4,8 +4,8 @@ variable "cda_password" {default = ""}
 
 provider "cda" {
   cda_server     = "${var.cda_server}"
-  user           = "${var.cda_user}"
-  password       = "${var.cda_password}"  
+ // user           = "${var.cda_user}"
+ // password       = "${var.cda_password}"  
 	
   default_attributes = { // default_attributes can be used to set the 'folder' and 'owner' attributes globally for the template.
     folder = "DEFAULT"
@@ -17,15 +17,15 @@ resource "cda_environment" "demoEnvironment" {
   name               = "Pet Shop PROD"
   folder             = "DEFAULT"
   
-  deployment_targets = ["${cda_deployment_target.jenys_target.name}", "Local Tomcat"]
+  deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
 }
 
-resource "cda_deployment_target" "jenys_target" {
-  name        = "jeny-${local.id}"
-  type        = "Database JDBC"
-  agent       = "WIN01" //TODO Install the Agent
+resource "cda_deployment_target" "demoTarget" {
+  name        = "Tomcat"
+  type        = "Tomcat"
+  //agent       = "WIN01" //TODO Install the Agent
 }
-
+/*
 resource "cda_login_object" "my_login_object" {
   name        = "test_login_object-${local.id}"
   folder      = "DEFAULT"
@@ -59,5 +59,6 @@ resource "cda_workflow_execution" "my_execution" {
   workflow                     = "workflow name" 
   package                      = "package" 
   deployment_profile           = "my_deployment_profile" 
-  override_existing_components = "false"
+  override_existing_components = "false"	
 }
+*/	
