@@ -14,14 +14,13 @@ provider "aws" {
 }
 
 resource "aws_instance" "cda_instance" {
-  name                   = "pet-shop-prod"
   ami                    = "${var.aws_ami}"
   instance_type          = "${var.instance_type}"
   vpc_security_group_ids = ["${var.aws_security_group_id}"]
-/*	
+	
   tags = {
     Name = "pet-shop-prod"
-  }*/
+  }
 }
 
 provider "cda" {
@@ -36,7 +35,7 @@ provider "cda" {
 }
  
 resource "cda_environment" "demoEnvironment" {
-  name               = "Pet Shop PROD"
+  name               = "${aws_instance.cda_instance.tags.Name}"
   type               = "Production"
   
   deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
