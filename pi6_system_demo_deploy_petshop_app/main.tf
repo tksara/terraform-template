@@ -37,7 +37,7 @@ provider "cda" {
  
 resource "cda_environment" "demoEnvironment" {
   name               = "Pet Shop PROD"
-  folder             = "DEFAULT"
+  type               = "Production"
   
   deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
 }
