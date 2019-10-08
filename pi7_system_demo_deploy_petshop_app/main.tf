@@ -1,6 +1,24 @@
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "aws_ami" {default = "ami-0080e4c5bc078760e"}
+variable "aws_security_group_id" {default = "sg-495c840a"}
+variable "instance_type" {default = "t2.micro"}
 variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+}
+
+resource "aws_instance" "cda_instance" {
+  name                   = "pet-shop-prod"
+  ami                    = "${var.aws_ami}"
+  instance_type          = "${var.instance_type}"
+  vpc_security_group_ids = ["${var.aws_security_group_id}"]
+}
 
 provider "cda" {
   cda_server     = "${var.cda_server}"
