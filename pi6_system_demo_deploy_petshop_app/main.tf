@@ -31,8 +31,8 @@ resource "aws_instance" "cda_instance" {
   HEREDOC
   /*
   provisioner "file" {
-   	source      = "scripts/remote/tomcat_installation.sh"
-	destination = "${var.remote_working_dir}/scripts/tomcat_installation.sh"
+   	source      = "scripts/agent_installation.sh"
+	destination = "/home/ubuntu/AE/scripts/agent_installation.sh"
 
 	connection {
 		type        = "ssh"
@@ -43,8 +43,8 @@ resource "aws_instance" "cda_instance" {
 
   provisioner "remote-exec" {
 	inline = [
-		"chmod +x ${var.remote_working_dir}/scripts/tomcat_installation.sh",
-		"${var.remote_working_dir}/scripts/tomcat_installation.sh ${var.tomcat_user} ${var.tomcat_pass}"
+		"chmod +x /home/ubuntu/AE/scripts/agent_installation.sh",
+		"/home/ubuntu/AE/scripts/agent_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.agent_pass} /home/ubuntu/AE"
 	]
 
 	connection {
