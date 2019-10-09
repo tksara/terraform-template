@@ -10,6 +10,9 @@ variable "agent_pass" {
 	default = "ubuntu"
 }
 
+variable "sm_port" {
+	default = "8871"
+}
 
 variable "ae_host" {
 	default = "172.31.43.107" # Private IP of Proxy Server
