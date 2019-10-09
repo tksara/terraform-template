@@ -7,6 +7,7 @@ variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
+variable "private_key_file" {default = "C:\Terraform\EM\AWS_Key\jeny-key-us-east-1.ppk"}
 
 provider "aws" {
   region     = "us-east-1"
@@ -54,6 +55,12 @@ resource "aws_instance" "cda_instance" {
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }	
+}
+
+resource "random_string" "cda_entity_name" {
+	length  = 10
+	special = false
+	lower   = false
 }
 
 provider "cda" {
