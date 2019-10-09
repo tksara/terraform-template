@@ -38,6 +38,7 @@ resource "aws_instance" "cda_instance" {
 
 	connection {
 		type        = "ssh"
+                host        = "${aws_instance.cda_instance.public_ip}"
 		user        = "ec2-user"
 		private_key = "${file("${var.private_key_file}")}"
 	}
@@ -51,6 +52,7 @@ resource "aws_instance" "cda_instance" {
 
 	connection {
 		type        = "ssh"
+                host        = "${aws_instance.cda_instance.public_ip}"
 		user        = "ec2-user"
 		private_key = "${file("${var.private_key_file}")}"
 	}
