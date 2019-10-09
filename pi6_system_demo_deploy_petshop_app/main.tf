@@ -32,6 +32,20 @@ resource "aws_instance" "cda_instance" {
                 sudo service tomcat7 start 
   HEREDOC
   
+  provisioner "remote-exec" {
+	inline = [
+		"mkdir -p ${var.remote_working_dir}",
+		"mkdir -p ${var.remote_working_dir}/scripts"
+	]
+
+	connection {
+		type        = "ssh"
+		host = self.public_ip 
+		user        = "ec2-user"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+  }
+
   provisioner "file" {
 	source      = "scripts/agent_installation.sh"
 	destination = "${var.remote_working_dir}/scripts/agent_installation.sh"
