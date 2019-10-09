@@ -8,7 +8,7 @@ variable "agent_user" {
 }
 
 variable "agent_pass" {
-	default = "ubuntu"
+	default = "ubu123$ntu"
 }
 
 variable "sm_port" {
