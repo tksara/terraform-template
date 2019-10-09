@@ -3,8 +3,8 @@ variable "agent_name_prefix" {
 }
 
 variable "agent_user" {
-	//default = "ubuntu"
-	default = "ec2-user"
+	default = "ubuntu"
+	//default = "ec2-user"
 }
 
 variable "agent_pass" {
