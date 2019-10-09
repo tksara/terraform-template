@@ -9,7 +9,7 @@ AGENT_PASS=$5
 
 FOLDER=$6
 
-echo -e "$AGENT_PASS\n$AGENT_PASS" | sudo passwd ubuntu
+echo -e "$AGENT_PASS\n$AGENT_PASS" | sudo passwd ec2-user
 
 # adapt agent binaries
 mkdir -p $FOLDER/Agent
