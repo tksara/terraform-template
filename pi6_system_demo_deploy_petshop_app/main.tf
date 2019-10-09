@@ -30,7 +30,7 @@ resource "aws_instance" "cda_instance" {
                 sudo yum install -y tomcat7-webapps tomcat7-docs-webapp tomcat7-admin-webapps
                 sudo service tomcat7 start 
   HEREDOC
-  /*
+  
   provisioner "file" {
 	source      = "scripts/agent_installation.sh"
 	destination = "${var.remote_working_dir}/scripts/agent_installation.sh"
@@ -53,7 +53,7 @@ resource "aws_instance" "cda_instance" {
 		user        = "ec2-user"
 		private_key = "${file("${var.private_key_file}")}"
 	}
-  }*/	
+  }	
 }
 
 provider "cda" {
