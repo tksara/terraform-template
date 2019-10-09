@@ -6,6 +6,7 @@ variable "instance_type" {default = "t2.micro"}
 variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
+variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 
 provider "aws" {
   region     = "us-east-1"
@@ -31,25 +32,25 @@ resource "aws_instance" "cda_instance" {
   HEREDOC
   /*
   provisioner "file" {
-   	source      = "scripts/agent_installation.sh"
-	destination = "/home/ubuntu/AE/scripts/agent_installation.sh"
+	source      = "scripts/agent_installation.sh"
+	destination = "${var.remote_working_dir}/scripts/agent_installation.sh"
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "ec2-user"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
 
   provisioner "remote-exec" {
 	inline = [
-		"chmod +x /home/ubuntu/AE/scripts/agent_installation.sh",
-		"/home/ubuntu/AE/scripts/agent_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.agent_pass} /home/ubuntu/AE"
+		"chmod +x ${var.remote_working_dir}/scripts/agent_installation.sh",
+		"${var.remote_working_dir}/scripts/agent_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\""
 	]
 
 	connection {
 		type        = "ssh"
-		user        = "ubuntu"
+		user        = "ec2-user"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }*/	
