@@ -1,12 +1,14 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
-variable "aws_ami" {default = "ami-0080e4c5bc078760e"}
+//variable "aws_ami" {default = "ami-0080e4c5bc078760e"}
+variable "aws_ami" {default = "ami-0bba96c31d87e65d9"}
 variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
 variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {default = ""}
-variable "remote_working_dir" {default = "/home/ec2-user/AE"}
+//variable "remote_working_dir" {default = "/home/ec2-user/AE"}
+variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
 
 provider "aws" {
@@ -41,7 +43,7 @@ resource "aws_instance" "cda_instance" {
 	connection {
 		type        = "ssh"
 		host = self.public_ip 
-		user        = "ec2-user"
+		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -53,7 +55,7 @@ resource "aws_instance" "cda_instance" {
 	connection {
 		type        = "ssh"
                 host        = self.public_ip
-		user        = "ec2-user"
+		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -65,7 +67,7 @@ resource "aws_instance" "cda_instance" {
 	connection {
 		type        = "ssh"
                 host = self.public_ip
-		user        = "ec2-user"
+		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }
@@ -80,7 +82,7 @@ resource "aws_instance" "cda_instance" {
 		type        = "ssh"
               //  host        = "${aws_instance.cda_instance.public_ip}"
                 host = self.public_ip
-		user        = "ec2-user"
+		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
   }	
