@@ -11,7 +11,7 @@ variable "cda_password" {default = "bond"}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
-variable "package" {}
+variable "package" {default = "no-package"}
 
 provider "aws" {
   region     = "us-east-1"
