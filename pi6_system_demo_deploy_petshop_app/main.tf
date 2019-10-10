@@ -28,10 +28,18 @@ resource "aws_instance" "cda_instance" {
   }
 	
   user_data = <<HEREDOC
-		#!/bin/bash -v
-                sudo apt update -y
-                sudo apt install -y tomcat7-webapps tomcat7-docs-webapp tomcat7-admin-webapps
-                sudo service tomcat7 start 
+		#!/bin/bash
+	# install tomcat service
+	sudo systemctl stop apt-daily.service
+	sudo systemctl stop apt-daily.timer
+	sudo apt-get update
+	sudo apt-get install -y tomcat8
+	sudo apt-get install -y tomcat8-admin
+	sudo sed -i 's/JAVA_OPTS=\"/JAVA_OPTS=\"-Djava.net.preferIPv4Stack=true\ -Djava.net.preferIPv4Addresses=true\ /g' /etc/default/tomcat8
+	sudo sed -i "s/\">/\">\n<user username=\"tomcat\" password=\"tomcat1234\" roles=\"manager-script,manager-gui\"\/> /g" /etc/tomcat8/tomcat-users.xml
+	sudo systemctl restart tomcat8
+	sudo systemctl start apt-daily.service
+	sudo systemctl start apt-daily.timer
   HEREDOC
   
   provisioner "remote-exec" {
