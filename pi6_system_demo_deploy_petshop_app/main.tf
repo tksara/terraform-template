@@ -10,8 +10,6 @@ variable "cda_password" {default = ""}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
-variable "tomcat_user" {default = "tomcat"}
-variable "tomcat_password" {default = "tomcat1234"}
 
 provider "aws" {
   region     = "us-east-1"
