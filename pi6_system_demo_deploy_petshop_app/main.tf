@@ -4,9 +4,10 @@ variable "aws_secret_key" {}
 variable "aws_ami" {default = "ami-04b9e92b5572fa0d1"}
 variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
-variable "cda_server" {default = "http://STOZH01L7480/cda"}
-variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
-variable "cda_password" {default = ""}
+//variable "cda_server" {default = "http://STOZH01L7480/cda"}
+variable "cda_server" {default = "http://http://vviedev01.sbb01.spoc.global/cda"}
+variable "cda_user" {default = "100/BOND/AUTOMIC"}
+variable "cda_password" {default = "bond"}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
@@ -115,12 +116,12 @@ resource "random_string" "cda_entity_name" {
 
 provider "cda" {
   cda_server     = "${var.cda_server}"
- // user           = "${var.cda_user}"
- // password       = "${var.cda_password}"  
+  user           = "${var.cda_user}"
+  password       = "${var.cda_password}"  
 	
   default_attributes = { // default_attributes can be used to set the 'folder' and 'owner' attributes globally for the template.
     folder = "DEFAULT"
-    owner  = "100/AUTOMIC/AUTOMIC"
+    owner  = "100/BOND/AUTOMIC"
   }
 }
  
@@ -139,8 +140,6 @@ resource "cda_deployment_target" "demoTarget" {
 /*
 resource "cda_login_object" "my_login_object" {
   name        = "test_login_object-${local.id}"
-  folder      = "DEFAULT"
-  owner       = "100/AUTOMIC/AUTOMIC"
 
   credentials = [
     {
