@@ -10,6 +10,8 @@ variable "cda_password" {default = ""}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
+variable "tomcat_user" {default = "tomcat"}
+variable "tomcat_password" {default = "tomcat1234"}
 
 provider "aws" {
   region     = "us-east-1"
@@ -26,21 +28,6 @@ resource "aws_instance" "cda_instance" {
   tags = {
     Name = "pet-shop-prod"
   }
-	
-  user_data = <<HEREDOC
-		#!/bin/bash
-	# install tomcat service
-	sudo systemctl stop apt-daily.service
-	sudo systemctl stop apt-daily.timer
-	sudo apt-get update
-	sudo apt-get install -y tomcat8
-	sudo apt-get install -y tomcat8-admin
-	sudo sed -i 's/JAVA_OPTS=\"/JAVA_OPTS=\"-Djava.net.preferIPv4Stack=true\ -Djava.net.preferIPv4Addresses=true\ /g' /etc/default/tomcat8
-	sudo sed -i "s/\">/\">\n<user username=\"tomcat\" password=\"tomcat1234\" roles=\"manager-script,manager-gui\"\/> /g" /etc/tomcat8/tomcat-users.xml
-	sudo systemctl restart tomcat8
-	sudo systemctl start apt-daily.service
-	sudo systemctl start apt-daily.timer
-  HEREDOC
   
   provisioner "remote-exec" {
 	inline = [
@@ -50,7 +37,7 @@ resource "aws_instance" "cda_instance" {
 
 	connection {
 		type        = "ssh"
-		host = self.public_ip 
+		host        = self.public_ip 
 		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
@@ -74,7 +61,33 @@ resource "aws_instance" "cda_instance" {
 
 	connection {
 		type        = "ssh"
-                host = self.public_ip
+                host        = self.public_ip
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+  }
+
+  provisioner "file" {
+	source      = "scripts/tomcat_installation.sh"
+	destination = "${var.remote_working_dir}/scripts/tomcat_installation.sh"
+
+	connection {
+		type        = "ssh"
+                host        = self.public_ip
+		user        = "ubuntu"
+		private_key = "${file("${var.private_key_file}")}"
+	}
+  }
+
+  provisioner "remote-exec" {
+	inline = [
+		"chmod +x ${var.remote_working_dir}/scripts/tomcat_installation.sh",
+		"${var.remote_working_dir}/scripts/tomcat_installation.sh ${var.tomcat_user} ${var.tomcat_pass}"
+	]
+
+	connection {
+		type        = "ssh"
+                host        = self.public_ip
 		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
@@ -89,7 +102,7 @@ resource "aws_instance" "cda_instance" {
 	connection {
 		type        = "ssh"
               //  host        = "${aws_instance.cda_instance.public_ip}"
-                host = self.public_ip
+                host        = self.public_ip
 		user        = "ubuntu"
 		private_key = "${file("${var.private_key_file}")}"
 	}
