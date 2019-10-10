@@ -11,6 +11,7 @@ variable "cda_password" {default = "bond"}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
+variable "package" {}
 
 provider "aws" {
   region     = "us-east-1"
@@ -135,40 +136,44 @@ resource "cda_environment" "demoEnvironment" {
 resource "cda_deployment_target" "demoTarget" {
   name        = "Tomcat"
   type        = "Tomcat"
-  //agent       = "WIN01" //TODO Install the Agent
+  agent       = "${var.agent_name_prefix}${random_string.cda_entity_name.result}"
 }
-/*
-resource "cda_login_object" "my_login_object" {
-  name        = "test_login_object-${local.id}"
+
+resource "cda_login_object" "demoLoginObject" {
+  name        = "demoLoginObject"
 
   credentials = [
     {
       agent      = "*"
-      type       = "WINDOWS"
-      username   = "Agent_User"
-      password   = "automic"
+      type       = "UNIX"
+      username   = "${var.agent_user}"
+      password   = "${var.agent_pass}"
     }
   ]
 }
 
-resource "cda_deployment_profile" "my_deployment_profile" {
-  name         = "test_profile-${local.id}"
-  application  = "IM Test App"
-  environment  = "${cda_environment.firstEnvironment.name}"
-  login_object = "${cda_login_object.my_login_object.name}"
+resource "cda_deployment_profile" "demoDeploymentProfile" {
+  name         = "demoProfile"
+  application  = "Demo_RepoApp"
+  environment  = "${cda_environment.demoEnvironment.name}"
+  login_object = "${cda_login_object.demoLoginObject.name}"
 
   deployment_map = {
-    "${var.component_name}" = "${cda_deployment_target.jenys_target.name}, Local Tomcat"
-    "Component B" = "Local Tomcat"
+    "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
-
+/*
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
-  application                  = "application" 
-  workflow                     = "workflow name" 
-  package                      = "package" 
-  deployment_profile           = "my_deployment_profile" 
+  application                  = "Demo_RepoApp" 
+  workflow                     = "deploy" 
+  package                      = "${var.package}" 
+  deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
 }
 */	
+	
+output "internal_ip_output" {
+	description = "package name"
+	value       = "${var.package}"
+}	
