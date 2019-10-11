@@ -8,6 +8,7 @@ SM_PORT=$4
 AGENT_PASS=$5
 
 FOLDER=$6
+AGENT_IP=$7
 
 echo -e "$AGENT_PASS\n$AGENT_PASS" | sudo passwd ubuntu
 
@@ -21,6 +22,7 @@ cp ./Agent/bin/ucxjxxx.ori.ini ./Agent/bin/ucxjlx6.ini
 sed -i "s/name=UNIX01/name=$AGENT_NAME/g" ./Agent/bin/ucxjlx6.ini
 sed -i "s/cp=cphost:2217/cp=$AE_HOST:$AE_PORT/g" ./Agent/bin/ucxjlx6.ini
 sed -i "s/;root=START/root=START/g" ./Agent/bin/ucxjlx6.ini
+sed -i "s/; <Agent name>=<ip address>/$AGENT_NAME=$AGENT_IP/g" ./Agent/bin/ucxjlx6.ini
 
 # adapt service manager binaries
 mkdir -p $FOLDER/SM
