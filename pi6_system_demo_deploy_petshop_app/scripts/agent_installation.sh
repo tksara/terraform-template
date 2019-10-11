@@ -22,8 +22,8 @@ cp ./Agent/bin/ucxjxxx.ori.ini ./Agent/bin/ucxjlx6.ini
 sed -i "s/name=UNIX01/name=$AGENT_NAME/g" ./Agent/bin/ucxjlx6.ini
 sed -i "s/cp=cphost:2217/cp=$AE_HOST:$AE_PORT/g" ./Agent/bin/ucxjlx6.ini
 sed -i "s/;root=START/root=START/g" ./Agent/bin/ucxjlx6.ini
-sed -i "s/; <Agent name>=<ip address>/$AGENT_NAME=$AGENT_IP/g" ./Agent/bin/ucxjlx6.ini
-
+# sed -i "s/; <Agent name>=<ip address>/$AGENT_NAME=$AGENT_IP/g" ./Agent/bin/ucxjlx6.ini
+sed -i "s/;bindAddr=111.1.1.1/bindAddr=$AGENT_IP/g" ./Agent/bin/ucxjlx6.ini
 
 # adapt service manager binaries
 mkdir -p $FOLDER/SM
