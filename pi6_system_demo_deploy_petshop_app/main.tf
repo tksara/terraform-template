@@ -137,6 +137,10 @@ resource "cda_deployment_target" "demoTarget" {
   name        = "Tomcat-${local.id}"
   type        = "Tomcat"
   agent       = "${var.agent_name_prefix}${random_string.cda_entity_name.result}"
+	
+   dynamic_properties = {
+      "instance_ip" = "${aws_instance.cda_instance.public_ip}"
+  }
 }
 
 resource "cda_login_object" "demoLoginObject" {
