@@ -127,20 +127,20 @@ provider "cda" {
 }
  
 resource "cda_environment" "demoEnvironment" {
-  name               = "${aws_instance.cda_instance.tags.Name}"
+  name               = "${aws_instance.cda_instance.tags.Name}-${local.id}"
   type               = "Production"
   
   deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
 }
 
 resource "cda_deployment_target" "demoTarget" {
-  name        = "Tomcat"
+  name        = "Tomcat-${local.id}"
   type        = "Tomcat"
   agent       = "${var.agent_name_prefix}${random_string.cda_entity_name.result}"
 }
 
 resource "cda_login_object" "demoLoginObject" {
-  name        = "demoLoginObject"
+  name        = "demoLoginObject-${local.id}"
 
   credentials = [
     {
@@ -153,7 +153,7 @@ resource "cda_login_object" "demoLoginObject" {
 }
 
 resource "cda_deployment_profile" "demoDeploymentProfile" {
-  name         = "demoProfile"
+  name         = "demoProfile-${local.id}"
   application  = "Demo_RepoApp"
   environment  = "${cda_environment.demoEnvironment.name}"
   login_object = "${cda_login_object.demoLoginObject.name}"
@@ -170,7 +170,16 @@ resource "cda_workflow_execution" "my_execution" {
   package                      = "${var.package}" 
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
-}	
+}
+	
+locals {
+	id = "${random_integer.name_extension.result}"
+}
+
+resource "random_integer" "name_extension" {
+  min     = 1
+  max     = 99999
+}
 	
 output "internal_ip_output" {
 	description = "package name"
