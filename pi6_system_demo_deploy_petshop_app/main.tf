@@ -96,7 +96,7 @@ resource "aws_instance" "cda_instance" {
   provisioner "remote-exec" {
 	inline = [
 		"chmod +x ${var.remote_working_dir}/scripts/agent_installation.sh",
-		"${var.remote_working_dir}/scripts/agent_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\" ${self.public_ip}"
+		"${var.remote_working_dir}/scripts/agent_installation.sh ${var.agent_name_prefix}${random_string.cda_entity_name.result} ${var.ae_host} ${var.ae_port} ${var.sm_port} ${var.agent_pass} \"${var.remote_working_dir}\" ${self.public_dns}"
 	]
 
 	connection {
