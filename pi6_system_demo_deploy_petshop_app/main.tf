@@ -162,7 +162,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
     "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
-/*
+
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
   application                  = "Demo_RepoApp" 
@@ -170,8 +170,7 @@ resource "cda_workflow_execution" "my_execution" {
   package                      = "${var.package}" 
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
-}
-*/	
+}	
 	
 output "internal_ip_output" {
 	description = "package name"
