@@ -26,7 +26,8 @@ provider "cda" {
 }
  
 resource "cda_environment" "firstEnvironment" {
-  name               = "jeny-${local.id}"
+  name               = "jeny"
+  //name               = "jeny-${local.id}"
   //folder             = "DEFAULT"
   type               = "Generic"
   description        = "Description Update"
@@ -43,7 +44,7 @@ resource "cda_environment" "firstEnvironment" {
 }
 
 resource "cda_deployment_target" "jenys_target" {
-  name        = "jeny-${local.id}"
+  name        = "jeny"
   type        = "Database JDBC"
   //folder      = "DEFAULT"
   folder        = "JENY"
@@ -53,9 +54,7 @@ resource "cda_deployment_target" "jenys_target" {
 }
 
 resource "cda_login_object" "my_login_object" {
-  name        = "test_login_object-${local.id}"
-  //folder      = "DEFAULT"
-  //owner       = "100/AUTOMIC/AUTOMIC"
+  name        = "test_login_object"
 
   credentials = [
     {
@@ -68,7 +67,7 @@ resource "cda_login_object" "my_login_object" {
 }
 
 resource "cda_deployment_profile" "my_deployment_profile" {
-  name         = "test_profile-${local.id}"
+  name         = "test_profile"
   //folder       = "DEFAULT"
   //owner        = "100/AUTOMIC/AUTOMIC"
   application  = "IM Test App"
