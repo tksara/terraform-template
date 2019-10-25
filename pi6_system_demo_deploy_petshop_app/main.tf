@@ -4,15 +4,16 @@ variable "aws_secret_key" {}
 variable "aws_ami" {default = "ami-04b9e92b5572fa0d1"}
 variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
-//variable "cda_server" {default = "http://STOZH01L7480/cda"}
-variable "cda_server" {default = "http://vviedev01.sbb01.spoc.global/cda"}
-variable "cda_user" {default = "100/BOND/AUTOMIC"}
-variable "cda_password" {default = "bond"}
+variable "cda_server" {default = "http://STOZH01L7480/cda"}
+variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
+//variable "cda_server" {default = "http://vviedev01.sbb01.spoc.global/cda"}
+//variable "cda_user" {default = "100/BOND/AUTOMIC"}
+//variable "cda_password" {default = "bond"}
 //variable "remote_working_dir" {default = "/home/ec2-user/AE"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
 variable "package" {default = "no-package"}
-
+/*
 provider "aws" {
   region     = "us-east-1"
   access_key = "${var.aws_access_key}"
@@ -108,7 +109,7 @@ resource "aws_instance" "cda_instance" {
 	}
   }	
 }
-
+*/
 resource "random_string" "cda_entity_name" {
 	length  = 10
 	special = false
@@ -127,7 +128,8 @@ provider "cda" {
 }
  
 resource "cda_environment" "demoEnvironment" {
-  name               = "${aws_instance.cda_instance.tags.Name}-${local.id}"
+ // name               = "${aws_instance.cda_instance.tags.Name}-${local.id}"
+  name               = "test-${local.id}"	
   type               = "Production"
   
   deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
@@ -166,7 +168,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
     "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
-
+/*
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
   application                  = "Demo_RepoApp" 
@@ -175,7 +177,7 @@ resource "cda_workflow_execution" "my_execution" {
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
 }
-	
+*/	
 locals {
 	id = "${random_integer.name_extension.result}"
 }
@@ -184,8 +186,8 @@ resource "random_integer" "name_extension" {
   min     = 1
   max     = 99999
 }
-	
+/*	
 output "internal_ip_output" {
 	description = "package name"
 	value       = "${var.package}"
-}	
+}*/	
