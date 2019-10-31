@@ -13,7 +13,7 @@ variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
 variable "package" {default = "no-package"}
-/*
+
 provider "aws" {
   region     = "us-east-1"
   access_key = "${var.aws_access_key}"
@@ -109,7 +109,7 @@ resource "aws_instance" "cda_instance" {
 	}
   }	
 }
-*/
+
 resource "random_string" "cda_entity_name" {
 	length  = 10
 	special = false
@@ -128,8 +128,7 @@ provider "cda" {
 }
  
 resource "cda_environment" "demoEnvironment" {
- // name               = "${aws_instance.cda_instance.tags.Name}-${local.id}"
-  name               = "test-${local.id}"	
+  name               = "${aws_instance.cda_instance.tags.Name}-${local.id}"	
   type               = "Production"
   
   deployment_targets = ["${cda_deployment_target.demoTarget.name}"]
@@ -168,7 +167,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
     "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
-/*
+
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
   application                  = "Demo_RepoApp" 
@@ -177,7 +176,7 @@ resource "cda_workflow_execution" "my_execution" {
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
 }
-*/	
+	
 locals {
 	id = "${random_integer.name_extension.result}"
 }
