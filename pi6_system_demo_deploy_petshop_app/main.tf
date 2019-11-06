@@ -6,6 +6,7 @@ variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
 variable "cda_server" {default = "http://STOZH01L7480/cda"}
 variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
+variable "cda_password" {}
 //variable "cda_server" {default = "http://vviedev01.sbb01.spoc.global/cda"}
 //variable "cda_user" {default = "100/BOND/AUTOMIC"}
 //variable "cda_password" {default = "bond"}
