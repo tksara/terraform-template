@@ -157,7 +157,7 @@ resource "cda_login_object" "demoLoginObject" {
     }
   ]
 }
-
+/*
 resource "cda_deployment_profile" "demoDeploymentProfile" {
   name         = "demoProfile-${local.id}"
   application  = "Demo_RepoApp"
@@ -168,6 +168,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
     "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
+*/
 /*
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
