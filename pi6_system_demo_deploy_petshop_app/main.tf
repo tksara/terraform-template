@@ -167,7 +167,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
     "petstore" = "${cda_deployment_target.demoTarget.name}"
   }
 }
-
+/*
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
   application                  = "Demo_RepoApp" 
@@ -176,7 +176,7 @@ resource "cda_workflow_execution" "my_execution" {
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
 }
-	
+*/	
 locals {
 	id = "${random_integer.name_extension.result}"
 }
