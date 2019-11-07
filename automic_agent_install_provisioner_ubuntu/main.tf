@@ -13,20 +13,6 @@ resource "aws_instance" "cda_instance" {
   	tags = {
     		Name = "pet-shop-prod"
   	}
-  
-  	provisioner "remote-exec" {
-		inline = [
-			"mkdir -p ${var.remote_working_dir}",
-			//"mkdir -p ${var.remote_working_dir}/scripts"
-		]
-
-		connection {
-			type        = "ssh"
-			host        = self.public_ip 
-			user        = "ubuntu"
-			private_key = "${file("${var.private_key_file}")}"
-		}
-  	}
 
   	provisioner "automic_agent_install" {
   		destination = "${var.remote_working_dir}"
