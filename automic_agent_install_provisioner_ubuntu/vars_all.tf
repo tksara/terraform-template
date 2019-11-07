@@ -8,10 +8,9 @@ variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
 variable "cda_password" {}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
 variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
-variable "agent_port" {}
-variable "ae_system_name" {}
+variable "agent_port" {default = "2300"}
+variable "ae_system_name" {default = "AUTOMIC"}
 variable "ae_host" {default = "3.88.27.73"}
 variable "ae_port" {default = "2217"}
-variable "sm_host" {default = }
 variable "sm_port" {default = "8871"}
-variable "sm_name" {}
+variable "sm_name" {default = "sm_"}
