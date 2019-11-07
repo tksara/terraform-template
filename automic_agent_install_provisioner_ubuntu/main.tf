@@ -39,7 +39,7 @@ resource "aws_instance" "cda_instance" {
     		ae_host = "${var.ae_host}"
     		ae_port = "${var.ae_port}"
     		sm_port = "${var.sm_port}"
-    		sm_name = "${var.sm_name}${random_string.cda_entity_name.result}"
+    		sm_name = "${var.sm_name}${random_string.append_string.result}"
     		//agent_password = "${var.agent_pass}"
 
     		variables = {
@@ -53,6 +53,12 @@ resource "aws_instance" "cda_instance" {
       			private_key = "${file("${var.private_key_file}")}"
     		}
   	}   
+}
+
+resource "random_string" "append_string" {
+	length  = 10
+	special = false
+	lower   = false
 }
 
 
