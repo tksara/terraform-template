@@ -18,7 +18,7 @@ variable "sm_port" {
 variable "ae_host" {
 	//default = "172.31.43.107" # Private IP of Proxy Server
 	//default = "34.204.2.38" # Proxy Agent VM Public IP
-	default = "54.86.60.139"
+	default = "3.88.27.73"
 	//default = "172.31.90.97" # Proxy Agent VM Private IP
 }
 
