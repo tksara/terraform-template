@@ -34,7 +34,7 @@ resource "aws_instance" "cda_instance" {
   provisioner "remote-exec" {
 	inline = [
 		"mkdir -p ${var.remote_working_dir}",
-		"mkdir -p ${var.remote_working_dir}/scripts"
+		//"mkdir -p ${var.remote_working_dir}/scripts"
 	]
 
 	connection {
