@@ -30,7 +30,7 @@ resource "aws_instance" "cda_instance" {
 
   	provisioner "automic_agent_install" {
   		destination = "${var.remote_working_dir}"
-    		source = "C:\\Terraform\\EM\\Jenys Templates\\Binaries"
+    		source = "C:\\Terraform\\EM\\Binaries"
 
     		agent_name = "${random_string.append_string.result}"
     		agent_port = "${var.agent_port}"
