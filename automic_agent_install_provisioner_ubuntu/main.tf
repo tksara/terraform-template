@@ -30,7 +30,7 @@ resource "aws_instance" "cda_instance" {
 
   	provisioner "automic_agent_install" {
   		destination = "${var.remote_working_dir}"
-    		source = "C:\\Users\\tp674035\\Documents\\Projects\\go-workspace\\src\\terraform-provisioner-cda\\artifacts\\unix\\install"
+    		source = "C:\\Terraform\\EM\\Jenys Templates\\Binaries"
 
     		//agent_name_prefix = "${var.agent_name_prefix}"
     		agent_name = "${random_string.cda_entity_name.result}"
