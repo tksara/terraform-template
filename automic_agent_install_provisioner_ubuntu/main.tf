@@ -32,7 +32,6 @@ resource "aws_instance" "cda_instance" {
   		destination = "${var.remote_working_dir}"
     		source = "C:\\Terraform\\EM\\Jenys Templates\\Binaries"
 
-    		//agent_name_prefix = "${var.agent_name_prefix}"
     		agent_name = "${random_string.cda_entity_name.result}"
     		agent_port = "${var.agent_port}"
     		ae_system_name = "${var.ae_system_name}"
