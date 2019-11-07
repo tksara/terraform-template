@@ -11,7 +11,7 @@ variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-
 variable "agent_port" {}
 variable "ae_system_name" {}
 variable "ae_host" {default = "3.88.27.73"}
-variable "ae_port" {}
-variable "sm_host" {}
-variable "sm_port" {}
+variable "ae_port" {default = "2217"}
+variable "sm_host" {default = }
+variable "sm_port" {default = "8871"}
 variable "sm_name" {}
