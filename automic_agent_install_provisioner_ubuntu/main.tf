@@ -25,7 +25,6 @@ resource "aws_instance" "cda_instance" {
     		ae_port = "${var.ae_port}"
     		sm_port = "${var.sm_port}"
     		sm_name = "${var.sm_name}${random_string.append_string.result}"
-    		//agent_password = "${var.agent_pass}"
 
     		variables = {
       			UC_EX_IP_ADDR = "${self.public_ip}"
