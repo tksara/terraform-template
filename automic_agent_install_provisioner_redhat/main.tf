@@ -33,7 +33,7 @@ resource "aws_instance" "cda_instance" {
     		connection {
       			host = self.public_ip
       			type = "ssh"
-      			user = "ubuntu"
+      			user = "ec2-user"
       			private_key = "${file("${var.private_key_file}")}"
     		}
   	}   
