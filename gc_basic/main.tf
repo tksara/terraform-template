@@ -75,19 +75,6 @@ resource "jira_comment" "example_comment" {
   issue_key = "${var.jiraIssueId}"
 }
 */
-	
-provider "google" {
-  credentials = "${var.gc_credentials}"
-  project     = "${var.project}"
-  region      = "${var.region}"
-}
-
-provider "opc" {
-  user            = "..."
-  password        = "..."
-  identity_domain = "..."
-  endpoint        = "..."
-}
 
 provider "azurerm" {
 	subscription_id = "${var.azure_subscription_id}"
