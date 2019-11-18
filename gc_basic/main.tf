@@ -5,10 +5,10 @@ variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
-variable "azure_client_secret" {}
-variable "azure_subscription_id" {}
-variable "azure_client_id" {}
-variable "azure_tenant_id" {}
+//variable "azure_client_secret" {}
+//variable "azure_subscription_id" {}
+//variable "azure_client_id" {}
+//variable "azure_tenant_id" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
