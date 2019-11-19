@@ -173,7 +173,7 @@ resource "cda_deployment_profile" "demoDeploymentProfile" {
 resource "cda_workflow_execution" "my_execution" {
   triggers                     = "true"
   application                  = "Demo_RepoApp" 
-  workflow                     = "Deploy" 
+  workflow                     = "Deploy PI6" 
   package                      = "${var.package}" 
   deployment_profile           = "${cda_deployment_profile.demoDeploymentProfile.name}" 
   override_existing_components = "false"	
