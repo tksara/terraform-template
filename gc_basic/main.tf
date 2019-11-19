@@ -5,10 +5,6 @@ variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
-//variable "azure_client_secret" {}
-//variable "azure_subscription_id" {}
-//variable "azure_client_id" {}
-//variable "azure_tenant_id" {}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
@@ -63,7 +59,7 @@ output "internal_ip_output" {
 	description = "Internal IP"
 	value       = "${google_compute_instance.default.*.network_interface.0.network_ip}"
 }
-/*
+
 provider "jira" {
   //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
@@ -74,12 +70,3 @@ resource "jira_comment" "example_comment" {
   body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.0.network_ip[0]}"
   issue_key = "${var.jiraIssueId}"
 }
-*/
-/*	
-provider "azurerm" {
-	subscription_id = "${var.azure_subscription_id}"
-	client_id       = "${var.azure_client_id}"
-	client_secret   = "${var.azure_client_secret}"
-	tenant_id       = "${var.azure_tenant_id}"
-}
-*/
