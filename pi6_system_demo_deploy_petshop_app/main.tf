@@ -30,7 +30,7 @@ resource "aws_instance" "cda_instance" {
   tags = {
     Name = "pet-shop-prod"
   }
-  
+  /*
   provisioner "remote-exec" {
 	inline = [
 		"mkdir -p ${var.remote_working_dir}",
