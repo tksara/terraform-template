@@ -8,7 +8,7 @@ resource "aws_instance" "cda_instance" {
   ami                    = "${var.aws_ami}"
   instance_type          = "${var.instance_type}"
   vpc_security_group_ids = ["${var.aws_security_group_id}"]
-  key_name	           = "jeny-key-us-east-1"
+  key_name	         = "jeny-key-us-east-1"
 
   tags = {
       Name = "agent_provisioner_instance"
