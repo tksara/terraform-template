@@ -1,15 +1,3 @@
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_ami" {default = "ami-00dd3069"}
-variable "aws_security_group_id" {default = "sg-495c840a"}
-variable "instance_type" {default = "t2.micro"}
-variable "cda_server" {default = "http://STOZH01L7480/cda"}
-variable "cda_user" {default = "100/AUTOMIC/AUTOMIC"}
-variable "cda_password" {}
-variable "remote_working_dir" {default = "/home/ubuntu/AE"}
-variable "private_key_file" {default = "C:\\Terraform\\EM\\AWS_Key\\jeny-key-us-east-1.pem"}
-variable "package" {default = "no-package"}
-
 provider "aws" {
   region     = "us-east-1"
   access_key = "${var.aws_access_key}"
@@ -18,7 +6,7 @@ provider "aws" {
 
 resource "aws_instance" "cda_instance" {
   ami                    = "${var.aws_ami}"
-  instance_type          = "t2.large"
+  instance_type          = "${var.instance_type}"
   vpc_security_group_ids = ["${var.aws_security_group_id}"]
   key_name	         = "jeny-key-us-east-1"
 
@@ -59,7 +47,6 @@ resource "aws_instance" "cda_instance" {
       UC_EX_PATH_TEMP = "../tmp"
       UC_EX_IP_ADDR = "${self.public_ip}"
     }
-
 
     connection {
       host = self.public_ip
