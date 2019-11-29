@@ -1,6 +1,6 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
-variable "aws_ami" {default = "ami-04b9e92b5572fa0d1"}
+variable "aws_ami" {default = "ami-00dd3069"}
 variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
 variable "remote_working_dir" {default = "/home/ubuntu/AE"}
