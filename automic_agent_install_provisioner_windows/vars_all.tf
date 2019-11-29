@@ -11,3 +11,5 @@ variable "ae_host" {default = "3.88.27.73"}
 variable "ae_port" {default = "2217"}
 variable "sm_port" {default = "8871"}
 variable "sm_name" {default = "sm_"}
+variable "agent_user" {default = ""}
+variable "agent_pass" {default = ""}
