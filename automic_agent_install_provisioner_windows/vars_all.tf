@@ -13,3 +13,4 @@ variable "sm_port" {default = "8871"}
 variable "sm_name" {default = "sm_"}
 variable "aws_instance_user" {default = "Administrator"}
 variable "aws_instance_pass" {default = ""}
+variable "agent_name_prefix" {default = "WINDOWS_TERRAFORM_"}
