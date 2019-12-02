@@ -29,9 +29,9 @@ resource "aws_instance" "cda_instance" {
     net start winrm
   </powershell>
   EOF
- /*
+ 
   provisioner "automic_agent_install" {
-    source         = "C:\Terraform\EM\Binaries\windows"
+    source         = "C:/Terraform/EM/Binaries/windows"
     destination    = "${var.remote_working_dir}"
 
     agent_name     = "${random_string.cda_entity_name.result}"
@@ -54,7 +54,7 @@ resource "aws_instance" "cda_instance" {
       user        = "${var.aws_instance_user}"
       password    = "${var.aws_instance_pass}"
     }
-  }  */
+  } 
 }
 
 resource "random_string" "cda_entity_name" {
@@ -66,8 +66,8 @@ resource "random_string" "cda_entity_name" {
 output "public_ip" {
   value = "${aws_instance.cda_instance.public_ip}"
 }
-/*
+
 output "agent_name" {
   value = "${var.agent_name_prefix}${random_string.cda_entity_name.result}"
 }
-*/
+
