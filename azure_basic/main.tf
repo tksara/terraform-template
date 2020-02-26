@@ -176,7 +176,7 @@ resource "azurerm_virtual_machine" "myterraformvm" {
 		environment = "Terraform Demo"
 	}*/
 }
-
+/*
 provider "jira" {
   //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
   //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
@@ -187,3 +187,4 @@ resource "jira_comment" "example_comment" {
   body = "Infrastructure Name: ${azurerm_virtual_machine.myterraformvm.*.name[0]}"
   issue_key = "${var.jiraIssueId}"
 }
+*/
