@@ -9,8 +9,8 @@ resource "random_string" "password" {
 
 provider "aws" {
 	region     = "us-east-1"
-	access_key = "${var.access_key}"
-	secret_key = "${var.secret_key}"
+	access_key = "${var.aws_access_key}"
+	secret_key = "${var.aws_secret_key}"
 }
 
 resource "aws_instance" "cda_instance" {
@@ -39,8 +39,8 @@ resource "aws_instance" "cda_instance" {
 		docker-compose up -d
 		cd /tmp
 		printf '%s\n' '{"Source": "zhenya.stoeva@gmail.com", "Template": "MyTemplateJ_${local.in_id}", "ConfigurationSetName": "ConfigSet", "Destination": {"ToAddresses": [ "jenya.stoeva@broadcom.com"]}, "TemplateData": "{}"}' >myemail1.json
-		export AWS_ACCESS_KEY_ID=${var.access_key} 
-		export AWS_SECRET_ACCESS_KEY=${var.secret_key}
+		export AWS_ACCESS_KEY_ID=${var.aws_access_key} 
+		export AWS_SECRET_ACCESS_KEY=${var.aws_secret_key}
 		export AWS_DEFAULT_REGION=us-east-1
 		aws ses send-templated-email --cli-input-json file://myemail1.json
 	HEREDOC
