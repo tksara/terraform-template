@@ -5,6 +5,7 @@ variable "image" {default = "ubuntu-1604-xenial-v20190212"}
 variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
 variable "jiraIssueId" {default = "no Jira Id"}
+variable "zone" {default = "us-west1-b"}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
@@ -29,7 +30,7 @@ provider "google" {
 resource "google_compute_instance" "default" {
   count        = "${var.num_nodes}"
   project      = "${var.project}"
-  zone         = "us-west1-b"
+  zone         = "${var.zone}"
   name         = "${var.infrastructure_name}-${count.index + 1}-${local.id}"
   machine_type = "f1-micro"
   
