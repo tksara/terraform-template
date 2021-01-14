@@ -6,7 +6,7 @@ variable "aws_security_group_id" {default = "sg-495c840a"}
 variable "instance_type" {default = "t2.micro"}
 
 provider "aws" {
-  region     = "us-east-1"
+  region     = "eu-central-1b"
   access_key = "${var.aws_access_key}"
   secret_key = "${var.aws_secret_key}"
 }
