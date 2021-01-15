@@ -1,9 +1,9 @@
 variable "project" {default = "cda-infrastructuremanager"}
 variable "region" {default = "europe-west3"}
-variable "image" {default = "debian-cloud/debian-9"}
+variable "image" {default = "debian-cloud/debian-10"}
 variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
-variable "zone" {default = "europe-west3-b"}
+variable "zone" {default = "europe-west3-a"}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
@@ -30,7 +30,7 @@ resource "google_compute_instance" "default" {
   project      = "${var.project}"
   zone         = "${var.zone}"
   name         = "${var.infrastructure_name}-${count.index + 1}-${local.id}"
-  machine_type = "f1-micro"
+  machine_type = "e2-micro"
   
   boot_disk {
     initialize_params {
