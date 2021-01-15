@@ -9,7 +9,7 @@ terraform {
 
 # Configure the Docker provider
 provider "docker" {
-  host = "http://10.97.101.54:2375"
+  host = "${var.host}"
 }
 
 # Create a container
@@ -19,5 +19,5 @@ resource "docker_container" "foo" {
 }
 
 resource "docker_image" "ubuntu" {
-  name = "ubuntu:latest"
+  name = "ubuntu:${var.image_tag}"
 }
