@@ -1,11 +1,9 @@
-variable "project" {default = "esd-general-dev"}
-variable "region" {default = "us-west1"}
-variable "subnetwork" {default = "test-network-sub"}
-variable "image" {default = "ubuntu-1604-xenial-v20190212"}
+variable "project" {default = "cda-infrastructuremanager"}
+variable "region" {default = "europe-west3"}
+variable "image" {default = "debian-cloud/debian-9"}
 variable "gc_credentials" {}
 variable "infrastructure_name" {default = "demo-infrastructure"}
-variable "jiraIssueId" {default = "no Jira Id"}
-variable "zone" {default = "us-west1-b"}
+variable "zone" {default = "europe-west3-b"}
 
 variable "num_nodes" {
   description = "Number of nodes to create"
@@ -41,8 +39,9 @@ resource "google_compute_instance" "default" {
   }
   
   network_interface {
-    subnetwork = "${var.subnetwork}"
-    subnetwork_project = "${var.project}"
+    network = "default"
+    access_config {
+    }
   }
 }
 
@@ -60,15 +59,3 @@ output "internal_ip_output" {
 	description = "Internal IP"
 	value       = "${google_compute_instance.default.*.network_interface.0.network_ip}"
 }
-/*
-provider "jira" {
-  //url = "http://localhost:8100"       # Can also be set using the JIRA_URL environment variable
-  //user = "Jenya"                      # Can also be set using the JIRA_USER environment variable
-  //password = "${var.jiraPassword}"    # Can also be set using the JIRA_PASSWORD environment variable
-}
-
-resource "jira_comment" "example_comment" {
-  body = "Infrastructure Name: ${google_compute_instance.default.*.name[0]} \r\n Project Name: ${google_compute_instance.default.*.project[0]} \r\n Internal IP: ${google_compute_instance.default.*.network_interface.0.network_ip[0]}"
-  issue_key = "${var.jiraIssueId}"
-}
-*/
