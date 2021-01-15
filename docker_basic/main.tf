@@ -13,11 +13,30 @@ provider "docker" {
 }
 
 # Create a container
-resource "docker_container" "foo" {
+resource "docker_container" "host1" {
   image = "${docker_image.ubuntu.latest}"
-  name  = "foo"
+  name = "host1"
+  attach = false
+  must_run = true
+  command = ["sleep", "600"]
+}
+
+resource "docker_container" "host2" {
+  image = "${docker_image.alpine.latest}"
+  name = "host2"
+  attach = false
+  must_run = true
+  command = ["sleep", "600"]
 }
 
 resource "docker_image" "ubuntu" {
   name = "ubuntu:latest"
+}
+
+data "docker_registry_image" "ubuntu" {
+  name = "ubuntu:18.04"
+}
+
+resource "docker_image" "alpine" {
+  name = "alpine:latest"
 }
