@@ -19,5 +19,5 @@ resource "docker_container" "foo" {
 }
 
 resource "docker_image" "ubuntu" {
-  name = "ubuntu:${var.image_tag}"
+  name = "ubuntu:latest"
 }
